@@ -40,6 +40,10 @@
     devShell = pkgs.mkShell {
       buildInputs = [
         builder
+        hsPkgs.haskell-language-server
+        hsPkgs.hlint
+        hsPkgs.fourmolu
+        hsPkgs.ghcid
       ];
     };
   });
