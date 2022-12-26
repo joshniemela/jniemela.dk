@@ -11,10 +11,37 @@
   let
     pkgs = import nixpkgs { inherit system; };
     hsPkgs = pkgs.haskellPackages;
-  in rec {
-    packages.default = hsPkgs.developPackage {
-      name = "test";
+    builder = hsPkgs.developPackage {
       root = ./.;
+      name = "build";
     };
-  }); 
+    
+  in rec {
+    packages.default = pkgs.stdenv.mkDerivation {
+      name = "site";
+      src = ./.;
+      buildInputs = [
+        builder
+      ];
+
+      buildPhase = ''
+        export LOCALE_ARCHIVE="${pkgs.glibcLocales}/lib/locale/locale-archive";
+        export LANG=en_US.UTF-8
+        site build
+      '';
+      
+      installPhase = ''
+        mkdir -p $out
+        cp -r _site/* $out
+      '';
+      
+      
+    };
+    devShell = pkgs.mkShell {
+      buildInputs = [
+        builder
+      ];
+    };
+  });
+  
 }
