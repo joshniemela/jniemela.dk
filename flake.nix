@@ -19,7 +19,7 @@
   in rec {
     packages.default = pkgs.stdenv.mkDerivation {
       name = "site";
-      src = ./.;
+      inputs.self = ./.;
       buildInputs = [
         builder
       ];
