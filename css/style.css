@@ -1,0 +1,57 @@
+/* Make the website responsive */
+html {
+  font-size: calc(0.6em + 1vw);
+  font-family: "Courier New", Monaco, monospace;
+  height: 100%;
+}
+
+/* Add a dark grey background colour to the entire website */
+body {
+    background-color: #121212;
+    margin: 0;
+    padding: 0;
+    height: 100%; 
+}
+
+/* Add a black background color to the top navigation */
+.topnav {
+    width: 100%;
+    outline: 3px solid #402F65;  
+    outline-offset: -3px;
+    background-color: #121212;
+    font-size: calc(0.5em + 0.2vw);
+  }
+  ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 3px;
+  }
+  
+  /* Style the links inside the navigation bar */
+  .topnav a {
+    color: #f2f2f256;
+    padding: 0.0em 0.5em;
+    text-decoration: none;
+    font-size: 130%;
+    font-weight: normal;
+  }
+  .topnav p {
+    color: #2B2B2B;
+    padding: 0.0em 0.0em;
+    margin: 0;
+  }
+  /* Change the color of links on hover */
+  .topnav a:hover {
+    background-color: #3B3B3B;
+    color: #f2f2f2;
+  }
+  
+  /* Add a color to the active/current link */
+  .topnav a.active {
+    color:#d16328;
+  }
+
+  h1 {
+    color: #f2f2f2;
+    padding: 0.0em 0.5em;
+  }

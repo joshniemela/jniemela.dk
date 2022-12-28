@@ -44,6 +44,7 @@
         hsPkgs.hlint
         hsPkgs.fourmolu
         hsPkgs.ghcid
+        hsPkgs.cabal-install
       ];
     };
   });
