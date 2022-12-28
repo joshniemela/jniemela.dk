@@ -18,7 +18,7 @@ main = hakyll $ do
     match (fromList ["about.rst", "contact.markdown"]) $ do
         route   $ setExtension "html"
         compile $ pandocCompiler
-            >>= loadAndApplyTemplate "templates/default.html" defaultContext
+            >>= loadAndApplyTemplate "templates/default.html" siteCtx
             >>= relativizeUrls
 
     match "posts/*" $ do
@@ -35,7 +35,7 @@ main = hakyll $ do
             let archiveCtx =
                     listField "posts" postCtx (return posts) `mappend`
                     constField "title" "Archives"            `mappend`
-                    defaultContext
+                    siteCtx
 
             makeItem ""
                 >>= loadAndApplyTemplate "templates/archive.html" archiveCtx
@@ -49,7 +49,7 @@ main = hakyll $ do
             posts <- recentFirst =<< loadAll "posts/*"
             let indexCtx =
                     listField "posts" postCtx (return posts) `mappend`
-                    defaultContext
+                    siteCtx
 
             getResourceBody
                 >>= applyAsTemplate indexCtx
@@ -60,7 +60,20 @@ main = hakyll $ do
 
 
 --------------------------------------------------------------------------------
+
+siteCtx :: Context String
+siteCtx = activeClassField <> defaultContext
+
 postCtx :: Context String
 postCtx =
     dateField "date" "%B %e, %Y" `mappend`
-    defaultContext
+    siteCtx
+
+activeClassField :: Context a
+activeClassField =
+  functionField "activeClass" $ \[p] _ -> do
+    path <- toFilePath <$> getUnderlying
+    return $
+      if path == p
+        then "active"
+        else path

@@ -51,6 +51,11 @@ article .header {
   text-decoration: none;
 }
 
+.active {
+ color:#f0ed61;
+ border-bottom:4px solid rgba(136,136,152,0.4)
+}
+
 @media (max-width: 319px) {
   body {
     width: 90%;
@@ -139,3 +144,6 @@ article .header {
     font-size: 1.8rem;
   }
 }
+
+
+
