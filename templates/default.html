@@ -23,7 +23,7 @@
                     <a class="$activeClass("contact.html")$" href="/contact.html">contact</a>
                     <a class="$activeClass("cv.html")$" href="/cv.html">cv</a>
                   </li>
-                  <li> <p> [<span style="color:#402F65">user@jniemela.dk</span>:<span style="color:#D16328">/</span>]$$ █</p> </li>
+                  <li> <p> [<span style="color:#402F65">user@jniemela.dk</span>:<span style="color:#D16328">/$dir$</span>]$$ █</p> </li>
                 </ul>
               </nav>           
             </div>
@@ -40,9 +40,9 @@
             <a href="http://jaspervdj.be/hakyll">Hakyll</a>.
           </div>
           $if(updated)$
-          <div id="footer">
-            <span id="updatedDate">Last updated: $updated$</span>
-          </div>
+            <div id="footer">
+              <span id="updatedDate">Last updated: $updated$</span>
+            </div>
           $else$
           $endif$ 
         </div>

@@ -1,7 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
-import           Hakyll
-import 			 Control.Applicative
-
+import Hakyll
+import System.FilePath
 main :: IO ()
 main = hakyll $ do
     match "images/*" $ do
@@ -64,10 +63,11 @@ postCtx =
     siteCtx 
 
 siteCtx :: Context String
-siteCtx = 
+siteCtx =
+  defaultContext <>
 	activeClassField <>
-	defaultContext <>
-    modificationTimeField "updated" "%F"
+  modificationTimeField "updated" "%F" <>
+  directoryField "dir"
 
 -- https://groups.google.com/forum/#!searchin/hakyll/if$20class/hakyll/WGDYRa3Xg-w/nMJZ4KT8OZUJ 
 activeClassField :: Context a 
@@ -75,4 +75,10 @@ activeClassField = functionField "activeClass" $ \[p] _ -> do
 	path <- toFilePath <$> getUnderlying 
 	return $ if path == p then "active" else "inactive" 
 
+directoryField :: String -> Context a
+directoryField = mapContext (dropExtension . indexToHome) . pathField
 
+indexToHome :: FilePath -> FilePath
+indexToHome path
+  | takeBaseName path == "index" = replaceBaseName path "home"
+  | otherwise = path
