@@ -53,13 +53,14 @@
             <!-- <a class="$activeClass("cv.html")$" href="/cv.html">cv</a> -->
           </li>
           $if(projects)$
-          $for(projects)$
-            <li>
-              <div>
-                <a class="$activeClass(dir)$" href="$url$">$title$</a>
-              </div>
-            </li>
-          $endfor$ $endif$
+            $for(projects)$
+              <li>
+                <div>
+                  <a class="$activeClass(dir)$" href="$url$">$title$</a>
+                </div>
+              </li>
+            $endfor$
+          $endif$
           <li> <p> [<span style="color:#402F65">user@jniemela.dk</span>:<span style="color:#D16328">/$dir$</span>]$$ █</p> </li>
         </ul>
       </nav>
