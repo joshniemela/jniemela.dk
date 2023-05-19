@@ -18,7 +18,7 @@ import Text.Pandoc
     writerExtensions,
   )
 import Text.Pandoc.Highlighting (Style, breezeDark, styleToCss)
-
+import System.FilePath
 
 --------------------------------------------------------------------------------
 -- PERSONALIZATION
@@ -111,11 +111,17 @@ main = hakyllWith config $ do
               <> constField "root" mySiteRoot
               <> constField "feedTitle" myFeedTitle
               <> constField "siteName" mySiteName
-              <> defaultContext
+              <> siteCtx
 
       getResourceBody
         >>= applyAsTemplate indexCtx
         >>= loadAndApplyTemplate "templates/default.html" indexCtx
+
+  match "about.md" $ do
+    route $ setExtension "html"
+    compile $
+      pandocCompilerCustom
+        >>= loadAndApplyTemplate "templates/default.html" siteCtx
 
   match "templates/*" $
     compile templateBodyCompiler
@@ -168,11 +174,22 @@ postCtx =
     <> constField "feedTitle" myFeedTitle
     <> constField "siteName" mySiteName
     <> dateField "date" "%Y-%m-%d"
-    <> defaultContext
+    <> siteCtx
 
 titleCtx :: Context String
 titleCtx =
   field "title" updatedTitle
+
+siteCtx :: Context String
+siteCtx =
+  constField "root" mySiteRoot
+    <> constField "feedTitle" myFeedTitle
+    <> constField "siteName" mySiteName
+    <> defaultContext
+    <> activeClassField
+    <> directoryField "dir"
+
+
 
 --------------------------------------------------------------------------------
 -- TITLE HELPERS
@@ -263,3 +280,23 @@ fileNameFromTitle =
 titleRoute :: Metadata -> Routes
 titleRoute =
   constRoute . fileNameFromTitle
+
+
+
+-- Active link for navbar
+-- https://groups.google.com/forum/#!searchin/hakyll/if$20class/hakyll/WGDYRa3Xg-w/nMJZ4KT8OZUJ 
+
+activeClassField :: Context a 
+activeClassField = functionField "activeClass" $ \[p] _ -> do 
+  path <- toFilePath <$> getUnderlying 
+  return $ if path == p then "active" else "inactive" 
+
+
+
+directoryField :: String -> Context a
+directoryField = mapContext (dropExtension . indexToHome) . pathField
+
+indexToHome :: FilePath -> FilePath
+indexToHome path
+  | takeBaseName path == "index" = replaceBaseName path "home"
+  | otherwise = path
