@@ -33,15 +33,9 @@
     <meta property="twitter:site" content="$siteName$">
     <meta property="twitter:title" content="$title$">
     <meta property="twitter:description" content="$desc$">
-    $if(authorTwitter)$
-    <meta property="twitter:creator" content="$authorTwitter$">
-    $endif$
 
     <link rel="shortcut icon" href="/favicon.ico">
     <link rel="canonical" href="$root$$url$">
-
-    <link rel="alternate" href="./atom.xml" title="$feedTitle$" type="application/atom+xml">
-    <link rel="alternate" href="./rss.xml" title="$feedTitle$" type="application/rss+xml">
 
     <link rel="stylesheet" href="./css/default.css" />
     <link rel="stylesheet" href="./css/code.css" />
@@ -50,14 +44,20 @@
     <div id="navigation" class="pageslinks">
       <nav class="topnav">
         <ul>
-          <li> <p> [<span style="color:#402F65">user@jniemela.dk</span>:<span style="color:#D16328">/</span>]$$ ls /</p> </li>
+          <li> <p> [<span style="color:#402F65">user@jniemela.dk</span>:<span style="color:#D16328">/</span>]$$ ls</p> </li>
           <li>
-            <a class="$activeClass("index.html")$" href="/">home</a>
-            <a class="$activeClass("about.md")$" href="/about.html">about</a>
-            <a class="$activeClass("projects.html")$" href="/projects.html">projects</a>
-            <a class="$activeClass("contact.html")$" href="/contact.html">contact</a>
-            <a class="$activeClass("cv.html")$" href="/cv.html">cv</a>
+            <a class="$activeClass("index")$" href="/">home</a>
+            <a class="$activeClass("about")$" href="/about.html">about</a>
+            <a class="$activeClass("projects")$" href="/projects.html">projects</a>
+            <a class="$activeClass("contact")$" href="/contact.html">contact</a>
+            <!-- <a class="$activeClass("cv.html")$" href="/cv.html">cv</a> -->
           </li>
+          $if(projects)$
+          $for(projects)$
+            <li>
+              <div><a href=".$url$">$title$</a></div>
+            </li>
+          $endfor$ $endif$
           <li> <p> [<span style="color:#402F65">user@jniemela.dk</span>:<span style="color:#D16328">/$dir$</span>]$$ █</p> </li>
         </ul>
       </nav>

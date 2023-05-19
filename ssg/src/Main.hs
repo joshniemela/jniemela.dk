@@ -19,7 +19,7 @@ import Text.Pandoc
   )
 import Text.Pandoc.Highlighting (Style, breezeDark, styleToCss)
 import System.FilePath
-
+import Data.List (isInfixOf)
 --------------------------------------------------------------------------------
 -- PERSONALIZATION
 
@@ -29,20 +29,6 @@ mySiteName = "My Site Name"
 mySiteRoot :: String
 mySiteRoot = "https://jniemela.dk"
 
-myFeedTitle :: String
-myFeedTitle = "My feed title"
-
-myFeedDescription :: String
-myFeedDescription = "My Site Description"
-
-myFeedAuthorName :: String
-myFeedAuthorName = "Joshua Niemelä"
-
-myFeedAuthorEmail :: String
-myFeedAuthorEmail = "josh@jniemela.dk"
-
-myFeedRoot :: String
-myFeedRoot = mySiteRoot
 
 --------------------------------------------------------------------------------
 -- CONFIG
@@ -92,7 +78,7 @@ main = hakyllWith config $ do
     compile compressCssCompiler
 
   match "projects/*" $ do
-    let ctx = constField "type" "article" <> postCtx
+    let ctx = constField "type" "article" <> projectCtx
 
     route $ metadataRoute titleRoute
     compile $
@@ -104,12 +90,9 @@ main = hakyllWith config $ do
   match "index.html" $ do
     route idRoute
     compile $ do
-      projects <- recentFirst =<< loadAll "projects/*"
 
       let indexCtx =
-            listField "projects" postCtx (return projects)
-              <> constField "root" mySiteRoot
-              <> constField "feedTitle" myFeedTitle
+              constField "root" mySiteRoot
               <> constField "siteName" mySiteName
               <> siteCtx
 
@@ -117,7 +100,7 @@ main = hakyllWith config $ do
         >>= applyAsTemplate indexCtx
         >>= loadAndApplyTemplate "templates/default.html" indexCtx
 
-  match "about.md" $ do
+  match (fromList ["about.md", "contact.md", "projects.md", "cv.md"]) $ do
     route $ setExtension "html"
     compile $
       pandocCompilerCustom
@@ -135,18 +118,10 @@ main = hakyllWith config $ do
           sitemapCtx =
             constField "root" mySiteRoot
               <> constField "siteName" mySiteName
-              <> listField "pages" postCtx (return pages)
+              <> listField "pages" projectCtx (return pages)
 
       makeItem ("" :: String)
         >>= loadAndApplyTemplate "templates/sitemap.xml" sitemapCtx
-
-  create ["rss.xml"] $ do
-    route idRoute
-    compile (feedCompiler renderRss)
-
-  create ["atom.xml"] $ do
-    route idRoute
-    compile (feedCompiler renderAtom)
 
   create ["css/code.css"] $ do
     route idRoute
@@ -162,16 +137,10 @@ makeStyle =
 --------------------------------------------------------------------------------
 -- CONTEXT
 
-feedCtx :: Context String
-feedCtx =
-  titleCtx
-    <> postCtx
-    <> bodyField "description"
 
-postCtx :: Context String
-postCtx =
+projectCtx :: Context String
+projectCtx =
   constField "root" mySiteRoot
-    <> constField "feedTitle" myFeedTitle
     <> constField "siteName" mySiteName
     <> dateField "date" "%Y-%m-%d"
     <> siteCtx
@@ -183,7 +152,6 @@ titleCtx =
 siteCtx :: Context String
 siteCtx =
   constField "root" mySiteRoot
-    <> constField "feedTitle" myFeedTitle
     <> constField "siteName" mySiteName
     <> defaultContext
     <> activeClassField
@@ -246,31 +214,6 @@ pandocHighlightStyle =
   breezeDark -- https://hackage.haskell.org/package/pandoc/docs/Text-Pandoc-Highlighting.html
 
 --------------------------------------------------------------------------------
--- FEEDS
-
-type FeedRenderer =
-  FeedConfiguration ->
-  Context String ->
-  [Item String] ->
-  Compiler (Item String)
-
-feedCompiler :: FeedRenderer -> Compiler (Item String)
-feedCompiler renderer =
-  renderer feedConfiguration feedCtx
-    =<< recentFirst
-    =<< loadAllSnapshots "posts/*" "content"
-
-feedConfiguration :: FeedConfiguration
-feedConfiguration =
-  FeedConfiguration
-    { feedTitle = myFeedTitle
-    , feedDescription = myFeedDescription
-    , feedAuthorName = myFeedAuthorName
-    , feedAuthorEmail = myFeedAuthorEmail
-    , feedRoot = myFeedRoot
-    }
-
---------------------------------------------------------------------------------
 -- CUSTOM ROUTE
 
 fileNameFromTitle :: Metadata -> FilePath
@@ -286,17 +229,23 @@ titleRoute =
 -- Active link for navbar
 -- https://groups.google.com/forum/#!searchin/hakyll/if$20class/hakyll/WGDYRa3Xg-w/nMJZ4KT8OZUJ 
 
-activeClassField :: Context a 
-activeClassField = functionField "activeClass" $ \[p] _ -> do 
-  path <- toFilePath <$> getUnderlying 
-  return $ if path == p then "active" else "inactive" 
 
 
 
 directoryField :: String -> Context a
 directoryField = mapContext (dropExtension . indexToHome) . pathField
 
+activeClassField :: Context a 
+activeClassField = functionField "activeClass" $ \[p] _ -> do 
+  -- if direcoryField contains "home" then "active" else "inactive"
+  path <- toFilePath <$> getUnderlying
+  return $ if p `isInfixOf` path then "active" else "inactive"
+
 indexToHome :: FilePath -> FilePath
 indexToHome path
   | takeBaseName path == "index" = replaceBaseName path "home"
   | otherwise = path
+
+-- This adds the listfield "projects" to the context of the page
+projectsCtx :: Context String
+projectsCtx = listField "projects" projectCtx (loadAll "projects/*")
