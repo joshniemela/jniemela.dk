@@ -19,6 +19,7 @@ import Text.Pandoc
   )
 import Text.Pandoc.Highlighting (Style, breezeDark, styleToCss)
 
+
 --------------------------------------------------------------------------------
 -- PERSONALIZATION
 
@@ -90,23 +91,23 @@ main = hakyllWith config $ do
     route idRoute
     compile compressCssCompiler
 
-  match "posts/*" $ do
+  match "projects/*" $ do
     let ctx = constField "type" "article" <> postCtx
 
     route $ metadataRoute titleRoute
     compile $
       pandocCompilerCustom
-        >>= loadAndApplyTemplate "templates/post.html" ctx
+        >>= loadAndApplyTemplate "templates/project.html" ctx
         >>= saveSnapshot "content"
         >>= loadAndApplyTemplate "templates/default.html" ctx
 
   match "index.html" $ do
     route idRoute
     compile $ do
-      posts <- recentFirst =<< loadAll "posts/*"
+      projects <- recentFirst =<< loadAll "projects/*"
 
       let indexCtx =
-            listField "posts" postCtx (return posts)
+            listField "projects" postCtx (return projects)
               <> constField "root" mySiteRoot
               <> constField "feedTitle" myFeedTitle
               <> constField "siteName" mySiteName
@@ -122,7 +123,7 @@ main = hakyllWith config $ do
   create ["sitemap.xml"] $ do
     route idRoute
     compile $ do
-      posts <- recentFirst =<< loadAll "posts/*"
+      posts <- recentFirst =<< loadAll "projects/*"
 
       let pages = posts
           sitemapCtx =
