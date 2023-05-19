@@ -77,8 +77,14 @@ main = hakyllWith config $ do
     route idRoute
     compile compressCssCompiler
 
+
+  -- Compile projects twice, to avoid a dependency cycle
   match "projects/*" $ do
-    let ctx = constField "type" "article" <> projectCtx
+    route $ metadataRoute titleRoute
+    compile getResourceBody
+
+  match "projects/*" $ version "final" $ do
+    let ctx = constField "type" "article" <> projectCtx <> projectsCtx
 
     route $ metadataRoute titleRoute
     compile $
@@ -100,7 +106,19 @@ main = hakyllWith config $ do
         >>= applyAsTemplate indexCtx
         >>= loadAndApplyTemplate "templates/default.html" indexCtx
 
-  match (fromList ["about.md", "contact.md", "projects.md", "cv.md"]) $ do
+  match "projects.md" $ do
+    route $ setExtension "html"
+    compile $ do
+      let projCtx =
+            constField "root" mySiteRoot
+              <> constField "siteName" mySiteName
+              <> projectsCtx
+              <> siteCtx
+      
+      pandocCompilerCustom 
+        >>= loadAndApplyTemplate "templates/default.html" projCtx
+
+  match (fromList ["about.md", "contact.md", "cv.md"]) $ do
     route $ setExtension "html"
     compile $
       pandocCompilerCustom
@@ -248,4 +266,5 @@ indexToHome path
 
 -- This adds the listfield "projects" to the context of the page
 projectsCtx :: Context String
-projectsCtx = listField "projects" projectCtx (loadAll "projects/*")
+projectsCtx = listField "projects" projectCtx (loadAll ("projects/*" .&&. hasNoVersion))
+
