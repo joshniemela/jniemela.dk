@@ -26,19 +26,19 @@ mySiteName :: String
 mySiteName = "My Site Name"
 
 mySiteRoot :: String
-mySiteRoot = "https://my-site.com"
+mySiteRoot = "https://jniemela.dk"
 
 myFeedTitle :: String
-myFeedTitle = "My Feed Title"
+myFeedTitle = "My feed title"
 
 myFeedDescription :: String
 myFeedDescription = "My Site Description"
 
 myFeedAuthorName :: String
-myFeedAuthorName = "My Name"
+myFeedAuthorName = "Joshua Niemelä"
 
 myFeedAuthorEmail :: String
-myFeedAuthorEmail = "me@myemail.com"
+myFeedAuthorEmail = "josh@jniemela.dk"
 
 myFeedRoot :: String
 myFeedRoot = mySiteRoot
