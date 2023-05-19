@@ -5,7 +5,7 @@ desc: "Me anuncio al mundo"
 image: "./images/waiheke-stony-batter.jpg"
 keywords: "hola, anuncio"
 lang: "es"
-title: "¡Hola Mundo!"
+title: "hola-mundo"
 updated: "2020-09-23T12:00:00Z"
 ---
 

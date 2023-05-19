@@ -4,6 +4,7 @@ import Control.Monad (forM_)
 import Data.List (isPrefixOf, isSuffixOf)
 import Data.Maybe (fromMaybe)
 import Hakyll
+import Hakyll.Web.Paginate
 import qualified Data.Text as T
 import qualified Data.Text.Slugger as Slugger
 import System.FilePath (takeFileName)
