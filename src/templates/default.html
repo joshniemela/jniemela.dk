@@ -44,7 +44,7 @@
     <div id="navigation" class="pageslinks">
       <nav class="topnav">
         <ul>
-          <li> <p> [<span style="color:#402F65">user@jniemela.dk</span>:<span style="color:#D16328">/</span>]$$ ls</p> </li>
+          <li> <p> [<span style="color:$brand5$">user@jniemela.dk</span>:<span style="color:$important5$">/</span>]$$ ls</p> </li>
           <li>
             <a class="$activeClass("index")$" href="/">home</a>
             <a class="$activeClass("about")$" href="/about.html">about</a>
@@ -60,7 +60,14 @@
               $endfor$
             $endif$
           </li>
-          <li> <p> [<span style="color:#402F65">user@jniemela.dk</span>:<span style="color:#D16328">/$dir$</span>]$$ █</p> </li>
+          <li> 
+            <p id="prompt"> 
+              <div id="prompttext">
+                [<span style="color:$brand5$">user@jniemela.dk</span>:<span style="color: $important5$">/$dir$</span>]$$
+              </div>
+              <div id="cursor"></div>
+            </p> 
+          </li>
         </ul>
       </nav>
     </div>
@@ -85,5 +92,25 @@
 
 
 <style>
-  
+  #prompt {
+    display: flex;
+    align-items: center;
+  }
+  #prompttext {
+    float: left;
+  }
+  #cursor {
+    width: 0.5em;
+    height: 1em;
+    border: 0.1em solid $neutral5$;
+    background-color: $neutral5$;
+    animation: blink 2s step-end infinite;
+    float: left;
+    margin-left: 0.5em;
+  }
+
+  @keyframes blink {
+    50% { background-color: transparent; }
+  }
+
 </style>

@@ -68,13 +68,12 @@ body {
     color: #402F65;
 }
 
-.topnav {
+.topnav{
+    display: flex;
     width: 100%;
     border-bottom: medium solid #332651;
     background-color: #121212;
     font-size: calc(0.5em + 0.2vw);
-    padding-top: 4px;
-    padding-bottom: 4px;
   }
   ul {
     list-style-type: none;
