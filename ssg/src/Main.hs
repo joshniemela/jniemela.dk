@@ -26,7 +26,7 @@ import Colours (colours)
 -- PERSONALIZATION
 
 mySiteName :: String
-mySiteName = "My Site Name"
+mySiteName = "Josh Niemelä"
 
 mySiteRoot :: String
 mySiteRoot = "https://jniemela.dk"
@@ -75,9 +75,10 @@ main = hakyllWith config $ do
       route idRoute
       compile copyFileCompiler
 
-  match "css/*" $ do
-    route idRoute
-    compile compressCssCompiler
+  --match "css/*" $ do
+  --  route idRoute
+  --  compile compressCssCompiler
+  --  not used since css is scoped now
 
 
   -- Compile projects twice, to avoid a dependency cycle
