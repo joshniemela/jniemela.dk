@@ -1,5 +1,8 @@
 # hakyll-nix-template
-
+# TODO:
+* add projects
+* remove unused parts of the template
+* replace this README
 [Hakyll](https://jaspervdj.be/hakyll/) + [Nix](https://nixos.org) template
 
 ## Quick tips
