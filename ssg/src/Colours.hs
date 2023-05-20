@@ -3,6 +3,12 @@ module Colours (
 )
 where
 
+-- import color package
+import Data.Colour (Colour)
+import Data.Colour.SRGB (RGB, sRGB24read)
+
+brand :: Colour Double
+brand = sRGB24read "#6241C7"
 
 
 -- Colour map
