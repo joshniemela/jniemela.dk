@@ -1,22 +1,13 @@
-# hakyll-nix-template
+# jniemela.dk
 # TODO:
 * add projects
 * remove unused parts of the template
 * replace this README
 [Hakyll](https://jaspervdj.be/hakyll/) + [Nix](https://nixos.org) template
 
-## Quick tips
-
-* Read the tutorial to get started! https://robertwpearce.com/the-hakyll-nix-template-tutorial.html
-* If you make changes to anything inside of `ssg/`, you'll need to clean the
-  hakyll cache and rebuild. This is the preferred series of commands for
-  rebuilding (with logs), cleaning the cache, and re-running the dev server:
-  
-  ```default
-  nix build --print-build-logs && \
-    nix run . clean && \
-    nix run . watch
-  ```
+## commands
+* `deploy` : deploys with rsync to the local server specified in the configs
+* `check`  : launches the website at port 8000 on localhost 
 
 ## Features
 
