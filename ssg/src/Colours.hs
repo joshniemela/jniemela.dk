@@ -4,21 +4,25 @@ module Colours (
 where
 
 -- import color package
-import Data.Colour (Colour)
-import Data.Colour.SRGB (RGB, sRGB24read)
+import Data.Colour (Colour, darken)
+import Data.Colour.SRGB (sRGB24read, sRGB24show)
 
-brand :: Colour Double
-brand = sRGB24read "#6241C7"
+brand = sRGB24read "#402F65"
+important = sRGB24read "#D16328"
+neutral = sRGB24read "#5E5E5E"
 
+-- generate a list of colours given a base name and a colour
+-- if given "purple"
+-- it will generate "purple500", "purple400", "purple300", "purple200", "purple100", "purple000"
+generateColours :: String -> Colour Double -> [(String, String)]
+generateColours name colour =
+  [ (name ++ show i, sRGB24show $ darken (0.2 * fromIntegral i) colour)
+  | i <- [0..10]
+  ]
 
 -- Colour map
 colours :: [(String, String)]
 colours =
-  [("red", "#ff0000")
-  ,("green", "#00ff00")
-  ,("blue", "#0000ff")
-  ,("yerro", "#ffff00")
-  ,("cyan", "#00ffff")
-  ,("magenta", "#ff00ff")
-  ,("white", "#ffffff")
-  ,("foobar", "#6241c7")]
+  generateColours "brand" brand
+  ++ generateColours "important" important
+  ++ generateColours "neutral" neutral
