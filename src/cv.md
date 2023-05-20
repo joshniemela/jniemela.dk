@@ -4,6 +4,6 @@ lang: "en"
 title: "CV page"
 ---
 
-<embed src="https://www.orimi.com/pdf-test.pdf" width="100%" height="850px" />
+<embed src="https://github.com/joshniemela/jniemela.dk/tree/main/src/cv.pdf" width="100%" height="850px" />
 
 
