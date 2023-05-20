@@ -92,7 +92,7 @@ main = hakyllWith config $ do
     compile $
       pandocCompilerCustom
         >>= loadAndApplyTemplate "templates/project.html" ctx
-        >>= saveSnapshot "content"
+        -- >>= saveSnapshot "content"
         >>= loadAndApplyTemplate "templates/default.html" ctx
 
   match "index.html" $ do
