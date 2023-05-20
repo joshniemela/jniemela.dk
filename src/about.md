@@ -4,17 +4,13 @@ desc: "This is the about page"
 stylesheet: "default"
 title: "About me"
 ---
-Nullam imperdiet sodales orci vitae molestie. Nunc quam orci, pharetra a
-rhoncus vitae, eleifend id felis. Suspendisse potenti. Etiam vitae urna orci.
-Quisque pellentesque dignissim felis, egestas tempus urna luctus vitae. In hac
-habitasse platea dictumst. Morbi fringilla mattis odio, et mattis tellus
-accumsan vitae.
 
-1. Amamus Unicode 碁
-2. Interdum nex magna.
+# /about-me
+My name is Joshua Niemelä and I'm a freelance full stack developer studying for a bachelor in Machine Learning and Data Science at <a href="https://di.ku.dk/">DIKU</a>. I have a passion for learning new concepts and technologies, and I'm always looking for new projects to work on. Generally I program in Julia, Haskell, Clojure and Python depending on the task.
 
-Vivamus eget mauris sit amet nulla laoreet lobortis. Nulla in diam elementum
-risus convallis commodo. Cras vehicula varius dui vitae facilisis. Proin
-elementum libero eget leo aliquet quis euismod orci vestibulum. Duis rhoncus
-lorem consequat tellus vestibulum aliquam. Quisque orci orci, malesuada porta
-blandit et, interdum nec magna.
+I am an avid user of Nix, all my hosts run NixOS and all my projects contain their own reproducible development environments. My <a href="https://github.com/joshniemela/.dotfiles">dotfiles</a> are also available on GitHub.  
+My hobbies are a bit all over the place, but I enjoy coding, bad memes, rocketry (I'm the Vice Chairman of <a href="https://copenhagensuborbitals.com"> Copenhagen Suborbitals</a>) and hiking.
+
+## Experience
+I have worked as a Julia developer and machine learning developer at two various companies, Juristic and Promilist. At Juristic I worked on text recognition, image processing and API development. At Promilist I worked on another machine learning project, this time working on optimising shipping routes for container ships using space-time graphs and shortest path algorithms.  
+Haskell is my go-to language for personal projects, and I have several projects on my GitHub that I have worked on in Haskell. Recently, I have also picked up Clojure to fill my need for a full-stack language, and I have been enjoying it a lot.
