@@ -46,6 +46,9 @@ config =
     , providerDirectory = "src"
     , storeDirectory = "ssg/_cache"
     , tmpDirectory = "ssg/_tmp"
+    --, deployCommand = "scp -r result/dist/* josh@jniemela.dk:/var/www"
+    , deployCommand = "rsync --chmod=Do+rw,Fo+r -ave 'ssh -p 22' \
+                      \ result/dist/* josh@jniemela.dk:/var/www"
     }
   where
     ignoreFile' path
