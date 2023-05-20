@@ -21,6 +21,7 @@ import Text.Pandoc
 import Text.Pandoc.Highlighting (Style, breezeDark, styleToCss)
 import System.FilePath
 import Data.List (isInfixOf)
+import Colours (colours)
 --------------------------------------------------------------------------------
 -- PERSONALIZATION
 
@@ -115,8 +116,8 @@ main = hakyllWith config $ do
               <> constField "siteName" mySiteName
               <> projectsCtx
               <> siteCtx
-      
-      pandocCompilerCustom 
+
+      pandocCompilerCustom
         >>= loadAndApplyTemplate "templates/default.html" projCtx
 
   match (fromList ["about.md", "contact.md", "cv.md"]) $ do
@@ -175,6 +176,7 @@ siteCtx =
     <> defaultContext
     <> activeClassField
     <> directoryField "dir"
+    <> paletteCtx
 
 
 
@@ -254,8 +256,8 @@ titleRoute =
 directoryField :: String -> Context a
 directoryField = mapContext (dropExtension . indexToHome) . pathField
 
-activeClassField :: Context a 
-activeClassField = functionField "activeClass" $ \[p] _ -> do 
+activeClassField :: Context a
+activeClassField = functionField "activeClass" $ \[p] _ -> do
   -- if direcoryField contains "home" then "active" else "inactive"
   path <- toFilePath <$> getUnderlying
   return $ if p `isInfixOf` path then "active" else "inactive"
@@ -269,3 +271,5 @@ indexToHome path
 projectsCtx :: Context String
 projectsCtx = listField "projects" projectCtx (loadAll ("projects/*" .&&. hasNoVersion))
 
+paletteCtx :: Context String
+paletteCtx = foldr1 (<>) $ map (uncurry constField) colours
