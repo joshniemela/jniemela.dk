@@ -41,8 +41,6 @@ config =
   defaultConfiguration
     { destinationDirectory = "dist"
     , ignoreFile = ignoreFile'
-    , previewHost = "127.0.0.1"
-    , previewPort = 8000
     , providerDirectory = "src"
     , storeDirectory = "ssg/_cache"
     , tmpDirectory = "ssg/_tmp"
