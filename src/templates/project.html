@@ -2,10 +2,23 @@
   <article>
     <header>
       <h1>
+      </h1>
+      <h1>
         <a href=".$url$">$title$</a>
       </h1>
       <div>
-        $date$ $if(updated)$(updated: $updated$)$endif$
+        Created at: $date$ $if(updated)$(updated: $updated$)$endif$ 
+        $if(github)$ <a href="$github$">[github]</a> $endif$
+      </div>
+      <div>
+        $if(languages)$
+          Language(s) used: $languages$
+        $endif$
+      </div>
+      <div>
+        $if(image)$
+          <img src="$image$" alt="$title$" style="max-width: 100%; max-height: 100%;"/>
+        $endif$
       </div>
     </header>
     <section>
