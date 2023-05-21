@@ -1,7 +1,7 @@
 ---
 desc: "Contains the CV page."
 lang: "en"
-title: "CV page"
+title: "CV - Josh Niemelä"
 ---
 
 <div class="cv">

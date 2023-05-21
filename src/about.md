@@ -2,7 +2,7 @@
 lang: en
 desc: "This is the about page"
 stylesheet: "default"
-title: "About me"
+title: "About - Josh Niemelä"
 ---
 
 # /about-me
