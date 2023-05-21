@@ -268,9 +268,9 @@ indexToHome path
   | takeBaseName path == "index" = replaceBaseName path "home"
   | otherwise = path
 
--- This adds the listfield "projects" to the context of the page
+-- This adds the listfield "projects" to the context of the page and sorts by recent
 projectsCtx :: Context String
-projectsCtx = listField "projects" projectCtx (loadAll ("projects/*" .&&. hasNoVersion))
+projectsCtx = listField "projects" projectCtx (recentFirst =<< loadAll ("projects/*" .&&. hasNoVersion))
 
 paletteCtx :: Context String
 paletteCtx = foldr1 (<>) $ map (uncurry constField) colours
