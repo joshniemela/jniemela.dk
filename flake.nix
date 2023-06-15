@@ -28,6 +28,7 @@
               compiler-nix-name = "ghc925";
               shell.buildInputs = [
                 hakyll-site
+                pkgs.rsync
               ];
               shell.tools = {
                 cabal = "latest";
