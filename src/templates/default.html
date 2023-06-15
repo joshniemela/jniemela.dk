@@ -64,7 +64,7 @@
           <a class="$activeClass("contact")$" href="/contact.html">contact</a>
           <a class="$activeClass("cv")$" href="/cv.html">cv</a>
         </li>
-        $if(projects)$ <li>
+        $if(projects)$ <li id="projects">
             <!-- maybe add another terminal prompt thing heresaying /projects -->
             $for(projects)$
               <a class="$activeClass(dir)$" href="$url$">$title$</a>
@@ -165,10 +165,17 @@
   }
 
   main {
-    margin-top: 12vh;
+    margin-top: $if(projects)$ 6.5em; $else$ 5em; $endif$
     margin-left: 5vw;
     margin-right: auto;
     max-width: 120ch;
+  }
+
+  h1 {
+    font-size: 2em;
+    margin-top: 0;
+    margin-bottom: 0.5em;
+    color: $brand5$;
   }
 
   #prompttext {
