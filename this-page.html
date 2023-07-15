@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>This page</title>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="My personal website for my projects and information about me.">
+    
+    <meta name="author" content="Joshua Niemelä">
+    
+    
+
+    <meta property="og:site_name" content="Josh Niemelä">
+    <meta property="og:title" content="This page">
+    <meta property="og:url" content="https://jniemela.dk/this-page.html">
+    <meta property="og:description" content="My personal website for my projects and information about me.">
+    
+    <meta property="og:image" content="https://jniemela.dkimages/this-page.png">
+    
+    
+    <meta property="og:type" content="article">
+    
+
+    
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:image" content="https://jniemela.dkimages/this-page.png">
+    
+    <meta property="twitter:site" content="Josh Niemelä">
+    <meta property="twitter:title" content="This page">
+    <meta property="twitter:description" content="My personal website for my projects and information about me.">
+
+    <link rel="canonical" href="https://jniemela.dk/this-page.html">
+
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
+
+    <meta name="google-site-verification" content="HYE0Yc9wmmVYp_gTGRZ5qpzKPV0VdEoG5eSPtXDirS8" />
+
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
+  </head>
+  <body>
+    <nav class="navbar">
+      <ul>
+        <li> 
+          [<span style="color:#402f65">user@jniemela.dk</span>:
+          <span style="color:#d16328">/</span>]$ ls
+        </li>
+        <li>
+          <a class="inactive" href="/">home</a>
+          <a class="inactive" href="/about.html">about</a>
+          <a class="active" href="/projects.html">projects</a>
+          <a class="inactive" href="/contact.html">contact</a>
+          <a class="inactive" href="/cv.html">cv</a>
+        </li>
+         <li id="projects">
+            <!-- maybe add another terminal prompt thing heresaying /projects -->
+            
+              <a class="inactive" href="/ku-courses.html">KU courses</a>
+            
+              <a class="active" href="/this-page.html">This page</a>
+            
+              <a class="inactive" href="/scone.html">Scone</a>
+            
+              <a class="inactive" href="/hs2048.html">hs2048</a>
+            
+        </li> 
+        <li> 
+          <div id="prompttext">
+            [<span style="color:#402f65">user@jniemela.dk</span>:<span style="color: #d16328">/projects/2023-05-20-this-page</span>]$
+          </div>
+          <div id="cursor"></div>
+        </li>
+      </ul>
+    </nav>
+
+    <main>
+        <main>
+  <article>
+    <header>
+      <h1>
+      </h1>
+      <h1>
+        This page
+      </h1>
+      <div>
+        Created at: 2023-05-20  
+         <a href="https://github.com/joshniemela/jniemela.dk">[github]</a> 
+      </div>
+      <div>
+        
+          Language(s) used: Haskell, HTML, CSS
+        
+      </div>
+      <div>
+        
+          <img src="images/this-page.png" alt="This page" style="max-width: 100%; max-height: 100%;"/>
+        
+      </div>
+    </header>
+    <section>
+      <p>Slightly meta, but this is the page you’re currently on. It’s a static site generated with <a href="https://jaspervdj.be/hakyll/">Hakyll</a>, a Haskell library for generating static sites. The most notable feature of this website is the navbar which shows the active page and active “directories” in the path, this is done with the <code>activeClassField</code> function:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ot">activeClassField ::</span> <span class="dt">Context</span> a</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>activeClassField <span class="ot">=</span> functionField <span class="st">&quot;activeClass&quot;</span> <span class="op">$</span> \[p] _ <span class="ot">-&gt;</span> <span class="kw">do</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="co">-- if direcoryField contains &quot;home&quot; then &quot;active&quot; else &quot;inactive&quot;</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  path <span class="ot">&lt;-</span> toFilePath <span class="op">&lt;$&gt;</span> getUnderlying</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span> <span class="op">$</span> <span class="kw">if</span> p <span class="ot">`isInfixOf`</span> path <span class="kw">then</span> <span class="st">&quot;active&quot;</span> <span class="kw">else</span> <span class="st">&quot;inactive&quot;</span></span></code></pre></div>
+<p>Since the path contains the previous sites, it will simply highlight all pages in the path. Another feature is that it automatically generates its own hues for the color scheme, this is done with the Colour library and the <code>generateColours</code> function. This function currently doesn’t provide a perceptually uniform colour scheme but it’s good enough for now.</p>
+    </section>
+  </article>
+</main>
+
+    </main>
+    <div>
+      <ul id="footer">
+        <li> Site generated by
+        <a href="http://jaspervdj.be/hakyll">Hakyll</a>. 
+        </li>
+       
+    </ul>
+  </body>
+</html>
+
+
+<style scoped>
+  :root {
+    background-color : #0A0A0A;
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    font-family: "Courier New", monospace;
+  }
+  
+  body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    color: #5e5e5e;
+  }
+
+  .navbar {
+    display: flex;
+    color: #2B2B2B;
+    width: 100%;
+    border-bottom: 0.2em solid #402f65;
+    margin: 0;
+    padding: 3px;
+    background-color: #121212;
+    position: fixed;
+    top: 0;
+  }
+
+  ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    
+  }
+
+  li {
+    display: inline;
+    margin: 0;
+    padding: 1px;
+  }
+  
+  .navbar a {
+    text-decoration: none;
+    color: #5e5e5e;
+    padding: 3px;
+    padding-left: 6px;
+    padding-right: 6px;
+    font-size: 0.9em;
+  }
+
+  .navbar a:hover {
+    background-color: #3c3c3c;
+    color: white;
+  }
+
+  .navbar .active {
+    color: #d16328 !important;
+  }
+
+  a {
+    color: #bd5923;
+  }
+
+  a:hover {
+    color: #ff893a;
+  }
+
+  main {
+    margin-top:  6.5em; 
+    margin-left: 5vw;
+    margin-right: auto;
+    max-width: 120ch;
+  }
+
+  h1 {
+    font-size: 2em;
+    margin-top: 0;
+    margin-bottom: 0.5em;
+    color: #a64d1e;
+  }
+
+  h2 {
+    font-size: 1.5em;
+    margin-top: 0;
+    margin-bottom: 0.5em;
+    color: #a64d1e;
+  }
+
+  #prompttext {
+    float: left;
+  }
+  #cursor {
+    width: 0.5em;
+    height: 1em;
+    border: 0.1em solid #5e5e5e;
+    background-color: #5e5e5e;
+    animation: blink 2s step-end infinite;
+    float: left;
+    margin-left: 0.5em;
+  }
+
+  #footer {
+    margin-top: 1em;
+    padding: 0.25em;
+    padding-left: 1em;
+    font-size: 0.8em;
+    width: 100%;
+    background-color: #121212;
+    display: flex;
+    flex-direction: column;
+  }
+  @keyframes blink {
+    50% { background-color: transparent; }
+  }
+
+</style>

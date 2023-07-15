@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>hs2048</title>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="hs2048, a 2048 clone written in Haskell.">
+    
+    <meta name="author" content="Joshua Niemelä">
+    
+    
+
+    <meta property="og:site_name" content="Josh Niemelä">
+    <meta property="og:title" content="hs2048">
+    <meta property="og:url" content="https://jniemela.dk/hs2048.html">
+    <meta property="og:description" content="hs2048, a 2048 clone written in Haskell.">
+    
+    <meta property="og:image" content="https://jniemela.dkimages/hs2048.png">
+    
+    
+    <meta property="og:type" content="article">
+    
+
+    
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:image" content="https://jniemela.dkimages/hs2048.png">
+    
+    <meta property="twitter:site" content="Josh Niemelä">
+    <meta property="twitter:title" content="hs2048">
+    <meta property="twitter:description" content="hs2048, a 2048 clone written in Haskell.">
+
+    <link rel="canonical" href="https://jniemela.dk/hs2048.html">
+
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
+
+    <meta name="google-site-verification" content="HYE0Yc9wmmVYp_gTGRZ5qpzKPV0VdEoG5eSPtXDirS8" />
+
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
+  </head>
+  <body>
+    <nav class="navbar">
+      <ul>
+        <li> 
+          [<span style="color:#402f65">user@jniemela.dk</span>:
+          <span style="color:#d16328">/</span>]$ ls
+        </li>
+        <li>
+          <a class="inactive" href="/">home</a>
+          <a class="inactive" href="/about.html">about</a>
+          <a class="active" href="/projects.html">projects</a>
+          <a class="inactive" href="/contact.html">contact</a>
+          <a class="inactive" href="/cv.html">cv</a>
+        </li>
+         <li id="projects">
+            <!-- maybe add another terminal prompt thing heresaying /projects -->
+            
+              <a class="inactive" href="/ku-courses.html">KU courses</a>
+            
+              <a class="inactive" href="/this-page.html">This page</a>
+            
+              <a class="inactive" href="/scone.html">Scone</a>
+            
+              <a class="active" href="/hs2048.html">hs2048</a>
+            
+        </li> 
+        <li> 
+          <div id="prompttext">
+            [<span style="color:#402f65">user@jniemela.dk</span>:<span style="color: #d16328">/projects/2022-11-21-hs2048</span>]$
+          </div>
+          <div id="cursor"></div>
+        </li>
+      </ul>
+    </nav>
+
+    <main>
+        <main>
+  <article>
+    <header>
+      <h1>
+      </h1>
+      <h1>
+        hs2048
+      </h1>
+      <div>
+        Created at: 2022-11-21  
+         <a href="https://github.com/joshniemela/hs2048">[github]</a> 
+      </div>
+      <div>
+        
+          Language(s) used: Haskell
+        
+      </div>
+      <div>
+        
+          <img src="images/hs2048.png" alt="hs2048" style="max-width: 100%; max-height: 100%;"/>
+        
+      </div>
+    </header>
+    <section>
+      <p>In our introductory couse on programming, we had to code a 3x3 version of 2048 in F#, without numbers and without being allowed to use matrices. I found this very frustrating and decided to learn Haskell in a week and code a more complete version of 2048 in Haskell. This was my first real project in Haskell, and I later on added a TCP server to it to allow other programs to interact with the game.<br />
+At the time that I wrote this, I didn’t know how to write stateful code in Haskell and therefore the game is acutally stateless, the score is a heuristic based on the current board state, a funny consequence of this is that the blocks are internally represented by their logarithm to the base 2, and the score is calculated by the following function:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ot">recurrentScore ::</span> <span class="dt">Maybe</span> <span class="dt">Int</span> <span class="ot">-&gt;</span> <span class="dt">Int</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>recurrentScore <span class="dt">Nothing</span> <span class="ot">=</span> <span class="dv">0</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co">-- The additional term is to account for the randomly spawned 4s</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>recurrentScore (<span class="dt">Just</span> n) <span class="ot">=</span> <span class="dv">2</span> <span class="op">^</span> n <span class="op">*</span> (n <span class="op">-</span> <span class="dv">1</span>) <span class="op">-</span> <span class="fu">quot</span> (<span class="dv">2</span> <span class="op">^</span> (n <span class="op">+</span> <span class="dv">1</span>)) <span class="dv">11</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="co">-- map recurrentScore to each element of the grid and sum the result</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="ot">scoreGrid ::</span> <span class="dt">Grid</span> <span class="ot">-&gt;</span> <span class="dt">Int</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>scoreGrid grid <span class="ot">=</span> <span class="fu">sum</span> <span class="op">$</span> <span class="fu">map</span> (<span class="fu">sum</span> <span class="op">.</span> <span class="fu">map</span> recurrentScore) grid</span></code></pre></div>
+    </section>
+  </article>
+</main>
+
+    </main>
+    <div>
+      <ul id="footer">
+        <li> Site generated by
+        <a href="http://jaspervdj.be/hakyll">Hakyll</a>. 
+        </li>
+       
+    </ul>
+  </body>
+</html>
+
+
+<style scoped>
+  :root {
+    background-color : #0A0A0A;
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    font-family: "Courier New", monospace;
+  }
+  
+  body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    color: #5e5e5e;
+  }
+
+  .navbar {
+    display: flex;
+    color: #2B2B2B;
+    width: 100%;
+    border-bottom: 0.2em solid #402f65;
+    margin: 0;
+    padding: 3px;
+    background-color: #121212;
+    position: fixed;
+    top: 0;
+  }
+
+  ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    
+  }
+
+  li {
+    display: inline;
+    margin: 0;
+    padding: 1px;
+  }
+  
+  .navbar a {
+    text-decoration: none;
+    color: #5e5e5e;
+    padding: 3px;
+    padding-left: 6px;
+    padding-right: 6px;
+    font-size: 0.9em;
+  }
+
+  .navbar a:hover {
+    background-color: #3c3c3c;
+    color: white;
+  }
+
+  .navbar .active {
+    color: #d16328 !important;
+  }
+
+  a {
+    color: #bd5923;
+  }
+
+  a:hover {
+    color: #ff893a;
+  }
+
+  main {
+    margin-top:  6.5em; 
+    margin-left: 5vw;
+    margin-right: auto;
+    max-width: 120ch;
+  }
+
+  h1 {
+    font-size: 2em;
+    margin-top: 0;
+    margin-bottom: 0.5em;
+    color: #a64d1e;
+  }
+
+  h2 {
+    font-size: 1.5em;
+    margin-top: 0;
+    margin-bottom: 0.5em;
+    color: #a64d1e;
+  }
+
+  #prompttext {
+    float: left;
+  }
+  #cursor {
+    width: 0.5em;
+    height: 1em;
+    border: 0.1em solid #5e5e5e;
+    background-color: #5e5e5e;
+    animation: blink 2s step-end infinite;
+    float: left;
+    margin-left: 0.5em;
+  }
+
+  #footer {
+    margin-top: 1em;
+    padding: 0.25em;
+    padding-left: 1em;
+    font-size: 0.8em;
+    width: 100%;
+    background-color: #121212;
+    display: flex;
+    flex-direction: column;
+  }
+  @keyframes blink {
+    50% { background-color: transparent; }
+  }
+
+</style>
