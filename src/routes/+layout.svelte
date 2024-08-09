@@ -1,40 +1,8 @@
 <script lang="ts">
 	import Navbar from '../components/Navbar.svelte';
-
-	const tree = {
-		name: 'root',
-		children: [
-			{
-				name: 'child1',
-				children: [
-					{
-						name: 'child1.1',
-						children: []
-					},
-					{
-						name: 'child1.2',
-						children: []
-					}
-				]
-			},
-			{
-				name: 'child2',
-				children: [
-					{
-						name: 'child2.1',
-						children: []
-					},
-					{
-						name: 'child2.2',
-						children: []
-					}
-				]
-			}
-		]
-	};
 </script>
 
-<Navbar {tree} remainingPath={[]} />
+<Navbar />
 
 <slot />
 

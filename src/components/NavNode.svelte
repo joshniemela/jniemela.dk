@@ -2,28 +2,23 @@
 	type Props = {
 		tree: Node;
 		activePath: string;
+		depth: number;
 	};
 
-	let { tree, remainingPath } = $props<Props>();
+	let { tree, activePath, depth } = $props<Props>();
 </script>
 
 <ul>
 	{#each tree.children as node}
 		<li>
-			{#if node.name === remainingPath[0]}
-				<p class:active={remainingPath.length === 1}>{node.name}</p>
-				{#if remainingPath.length > 1}
-					<svelte:self tree={node} activePath={remainingPath.slice(1)} />
-				{/if}
+			{#if node.name === activePath[depth + 1]}
+				<a class="active" href="{activePath.slice(0, depth + 1).join('/')}/{node.name}"
+					>{node.name}</a
+				>
+				<svelte:self tree={node} {activePath} depth={depth + 1} />
 			{:else}
-				<p>{node.name}</p>
+				<a href="{activePath.slice(0, depth + 1).join('/')}/{node.name}">{node.name}</a>
 			{/if}
 		</li>
 	{/each}
 </ul>
-
-<style>
-	.active {
-		font-weight: bold;
-	}
-</style>
