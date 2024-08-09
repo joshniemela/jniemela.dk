@@ -8,6 +8,10 @@
 
 <svelte:head>
 	<style>
+		main {
+			font-family: 'Inter', sans-serif;
+		}
+
 		@media print {
 			main {
 				height: 100%;
@@ -29,10 +33,14 @@
 				margin: 0;
 			}
 			nav {
-				display: none;
+				visibility: hidden;
 			}
 
 			footer {
+				display: none;
+			}
+
+			button {
 				display: none;
 			}
 
@@ -40,9 +48,28 @@
 				page-break-after: always;
 			}
 		}
+
+		button {
+			color: var(--colour-orange) !important;
+			font-weight: 500;
+		}
+		button:hover {
+			font-weight: 900;
+			font-size: 1.1rem;
+		}
 		/* https://excessivelyadequate.com/posts/print.html has useful info on css @page */
 	</style>
 </svelte:head>
+
+<aside class="flex justify-center">
+	<button
+		on:click={() => {
+			window.print();
+		}}
+	>
+		Download PDF
+	</button>
+</aside>
 
 <!--This top component contains the photo, name and contacts------------------>
 <main class="text-sm p-8 m-auto shadow-lg max-w-[210mm] h-[594mm]">

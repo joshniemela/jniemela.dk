@@ -110,6 +110,7 @@
 
 	.prompt {
 		display: flex;
+		color: var(--colour-grey);
 	}
 
 	a {
