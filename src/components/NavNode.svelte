@@ -1,11 +1,12 @@
 <script lang="ts">
+	import type { LinkNode } from '$lib/types';
 	type Props = {
-		tree: Node;
-		activePath: string;
+		tree: LinkNode;
+		activePath: string[];
 		depth: number;
 	};
 
-	let { tree, activePath, depth } = $props<Props>();
+	let { tree, activePath, depth }: Props = $props();
 </script>
 
 <ul>
