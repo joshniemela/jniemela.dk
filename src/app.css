@@ -10,7 +10,7 @@
 	--colour-light-orange: #f7a66b;
 	--colour-purple: #402f65;
 	--colour-grey: #3c3c3c;
-	--colour-light-grey: #7b7b7b;
+	--colour-light-grey: #8b8b8b;
 	color: var(--colour-light-grey);
 }
 a {
@@ -26,11 +26,15 @@ footer {
 main {
 	padding: 0 2rem;
 }
-h1 {
+.page h1 {
 	font-size: 2rem;
 	color: var(--colour-orange);
 }
-h2 {
+.page h2 {
 	font-size: 1.5rem;
 	color: var(--colour-orange);
+}
+
+p {
+	margin: 0.5rem 0;
 }

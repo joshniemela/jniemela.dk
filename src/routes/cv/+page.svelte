@@ -7,6 +7,7 @@
 </script>
 
 <svelte:head>
+	<title>CV - {name}</title>
 	<style>
 		main {
 			font-family: 'Inter', sans-serif;
