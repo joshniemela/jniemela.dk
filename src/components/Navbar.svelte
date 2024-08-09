@@ -87,9 +87,21 @@
 	nav {
 		display: flex;
 		flex-direction: column;
+		border-bottom: 0.2em solid var(--colour-grey);
 	}
 	nav a.active {
 		color: var(--colour-orange);
+	}
+
+	nav a {
+		padding: 0.1em;
+		margin: 0.3em;
+		color: var(--colour-light-grey);
+	}
+
+	nav a:hover {
+		background-color: var(--colour-grey);
+		color: white;
 	}
 
 	#cursor {
@@ -100,7 +112,7 @@
 		float: left;
 		margin-left: 0.4em;
 		margin-top: 0.18em;
-		margin-bottom: 0.18em;
+		margin-bottom: 0.25em;
 	}
 	@keyframes blink {
 		50% {
@@ -111,14 +123,5 @@
 	.prompt {
 		display: flex;
 		color: var(--colour-grey);
-	}
-
-	a {
-		padding: 0.1em;
-		margin: 0.3em;
-	}
-	a:hover {
-		background-color: var(--colour-grey);
-		color: white;
 	}
 </style>

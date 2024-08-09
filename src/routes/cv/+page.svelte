@@ -51,11 +51,9 @@
 
 		button {
 			color: var(--colour-orange) !important;
-			font-weight: 500;
 		}
 		button:hover {
-			font-weight: 900;
-			font-size: 1.1rem;
+			color: var(--colour-light-orange) !important;
 		}
 		/* https://excessivelyadequate.com/posts/print.html has useful info on css @page */
 	</style>
