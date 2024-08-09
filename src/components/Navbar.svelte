@@ -1,6 +1,5 @@
 <script lang="ts">
 	import type { LinkNode } from '$lib/types';
-	import NavNode from './NavNode.svelte';
 	import { page } from '$app/stores';
 
 	const tree: LinkNode = {
@@ -21,6 +20,21 @@
 			{ name: 'cv' }
 		]
 	};
+
+	function flattenActiveTree(tree: LinkNode, activePath: string[]): string[][] {
+		function childNames(node: LinkNode): string[] {
+			return node.children ? node.children.map((child) => child.name) : [];
+		}
+		let activeNode: LinkNode | undefined = tree;
+		let result = [];
+		for (let i = 0; i < activePath.length; i++) {
+			if (activeNode?.children) {
+				result.push(childNames(activeNode));
+				activeNode = activeNode.children.find((child) => child.name === activePath[i + 1]);
+			}
+		}
+		return result;
+	}
 
 	let activePath: string[] = $state([]);
 
@@ -45,7 +59,21 @@
 
 <nav>
 	{@render prompt('/', 'ls')}
-	<NavNode {tree} {activePath} depth={0} />
+	<ul>
+		{#each flattenActiveTree(tree, activePath) as layer, i}
+			<li>
+				{#each layer as nodeName}
+					{#if nodeName === activePath[i + 1]}
+						<a class="active" href="{activePath.slice(0, i + 1).join('/')}/{nodeName}"
+							>{nodeName}
+						</a>
+					{:else}
+						<a href="{activePath.slice(0, i + 1).join('/')}/{nodeName}">{nodeName}</a>
+					{/if}
+				{/each}
+			</li>
+		{/each}
+	</ul>
 	{@render prompt(activePath.join('/'), '', true)}
 </nav>
 
