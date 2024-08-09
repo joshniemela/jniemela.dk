@@ -5,7 +5,7 @@
 	const tree: LinkNode = {
 		name: 'root',
 		children: [
-			{ name: 'home', pathAlias: '/' },
+			{ name: 'home' },
 			{ name: 'about' },
 			{ name: 'contact' },
 			{
@@ -36,7 +36,7 @@
 		return result;
 	}
 
-	let activePath: string[] = $state([]);
+	let activePath: string[] = $state(['']);
 
 	$effect(() => {
 		// replace %20 with space, this is so that activePath works with pages that contain spaces
@@ -63,7 +63,13 @@
 		{#each flattenActiveTree(tree, activePath) as layer, i}
 			<li>
 				{#each layer as nodeName}
-					{#if nodeName === activePath[i + 1]}
+					{#if nodeName === 'home'}
+						{#if activePath[1] === ''}
+							<a class="active" href="/">{nodeName}</a>
+						{:else}
+							<a href="/">{nodeName}</a>
+						{/if}
+					{:else if nodeName === activePath[i + 1]}
 						<a class="active" href="{activePath.slice(0, i + 1).join('/')}/{nodeName}"
 							>{nodeName}
 						</a>
@@ -82,22 +88,36 @@
 		display: flex;
 		flex-direction: column;
 	}
-	:global(nav a.active) {
+	nav a.active {
 		color: var(--colour-orange);
 	}
 
 	#cursor {
-		width: 0.5em;
-		height: 1em;
+		width: 0.6em;
 		border: 0.1em solid var(--colour-grey);
 		background-color: var(--colour-grey);
 		animation: blink 2s step-end infinite;
 		float: left;
-		margin-left: 0.5em;
+		margin-left: 0.4em;
+		margin-top: 0.18em;
+		margin-bottom: 0.18em;
 	}
 	@keyframes blink {
 		50% {
 			background-color: transparent;
 		}
+	}
+
+	.prompt {
+		display: flex;
+	}
+
+	a {
+		padding: 0.1em;
+		margin: 0.3em;
+	}
+	a:hover {
+		background-color: var(--colour-grey);
+		color: white;
 	}
 </style>
