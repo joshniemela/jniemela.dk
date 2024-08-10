@@ -66,7 +66,7 @@
 			window.print();
 		}}
 	>
-		Download PDF
+		Print/download PDF
 	</button>
 </aside>
 

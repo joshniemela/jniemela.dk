@@ -11,10 +11,10 @@
 			{
 				name: 'projects',
 				children: [
-					{ name: 'hs2048' },
+					{ name: 'KU Courses' },
 					{ name: 'This page' },
 					{ name: 'Scone' },
-					{ name: 'KU Courses' }
+					{ name: 'hs2048' }
 				]
 			},
 			{ name: 'cv' }
@@ -123,5 +123,8 @@
 	.prompt {
 		display: flex;
 		color: var(--colour-grey);
+	}
+	ul {
+		padding: 0 1em;
 	}
 </style>
