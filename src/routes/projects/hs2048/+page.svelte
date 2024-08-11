@@ -1,5 +1,6 @@
 <script lang="ts">
 	import Project from '../../../components/Project.svelte';
+	import Term from '../../../components/Term.svelte';
 </script>
 
 <Project
@@ -75,4 +76,5 @@
 		This function gives an approximately correct score at any given time without saving the state.
 		The game will be embedded into this page at a later time.
 	</p>
+	<Term />
 </Project>
