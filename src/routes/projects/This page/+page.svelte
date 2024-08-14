@@ -6,11 +6,11 @@
 	title="This page"
 	description="My personal website"
 	languagesUsed="Svelte"
-	github="https://github.com/joshniemela/v2.jniemela.dk"
+	github="https://github.com/joshniemela/jniemela.dk"
 	lastUpdated="09-08-2024"
 >
 	<div class="wrapper">
-		<iframe src="http://localhost:5173" title="My personal page" class="frame"></iframe>
+		<iframe src="https://jniemela.dk" title="My personal page" class="frame"></iframe>
 	</div>
 	<p>
 		Slightly meta, but this is the page you're currently on. It's a website built with SvelteKit.
