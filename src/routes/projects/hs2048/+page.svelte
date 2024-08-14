@@ -76,5 +76,5 @@
 		This function gives an approximately correct score at any given time without saving the state.
 		The game will be embedded into this page at a later time.
 	</p>
-	<Term options={{ convertEol: true }} />
+	<Term options={{ convertEol: true, rows: 11 }} />
 </Project>
