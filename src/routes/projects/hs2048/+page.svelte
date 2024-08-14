@@ -74,7 +74,6 @@
 	</div>
 	<p>
 		This function gives an approximately correct score at any given time without saving the state.
-		The game will be embedded into this page at a later time.
 	</p>
 	<Term
 		options={{ convertEol: true, rows: 11, fontSize: 25, fontFamily: 'monospace', fontWeight: 500 }}
