@@ -37,6 +37,7 @@ export class Hs2048Game {
 		this.#server = net.createServer((socket) => {
 			console.log('Client connected');
 			socket.on('data', (data) => {
+				console.log('Received data:', data.toString());
 				this.#currentState = data.toString();
 				// The first data we receive we can assume means it's started
 				if (this.#serverState === ServerState.WAITING) {
@@ -58,10 +59,11 @@ export class Hs2048Game {
 		this.#server.listen(0, () => {
 			console.log(`TCP server started on port ${(this.#server.address() as AddressInfo).port}`);
 		});
-		this.#process = spawn(hs2048BinaryPath, [
-			'-p',
-			(this.#server.address() as AddressInfo).port.toString()
-		]);
+		this.#process = spawn(
+			hs2048BinaryPath,
+			['-p', (this.#server.address() as AddressInfo).port.toString()],
+			{ stdio: ['pipe', 'ignore', 'ignore'] }
+		);
 		// Wait for the server to start
 		while (this.#serverState === ServerState.WAITING) {
 			await new Promise((resolve) => setTimeout(resolve, 100));
@@ -97,11 +99,14 @@ export class Hs2048Game {
 	}
 
 	async move(direction: string): Promise<void> {
+		console.log('Moving:', direction);
+		console.log('Server state:', this.#serverState);
 		if (this.#serverState === ServerState.STOPPED) {
 			return;
 		}
 		// We can assert non-null since the server is running, this means a process was made.
 		this.#process!.stdin!.write(direction);
+		console.log('Sent direction:', direction);
 		if (this.#currentState === 'gameover') {
 			this.#serverState = ServerState.STOPPED;
 			return;
@@ -111,8 +116,18 @@ export class Hs2048Game {
 		}
 
 		// Wait for the server to respond
-		while (this.#serverState === ServerState.WAITING) {
-			await new Promise((resolve) => setTimeout(resolve, 10));
+		let attempts = 0;
+		while (this.#serverState === ServerState.WAITING && attempts < 10) {
+			await new Promise((resolve) => {
+				console.log('Waiting for server to respond');
+				attempts++;
+				setTimeout(resolve, 10);
+			});
+		}
+		// This here exists so that the server doesn't hang forever if something weird happens
+		if (attempts >= 10) {
+			console.error('Server did not respond');
+			this.#serverState = ServerState.IDLE;
 		}
 	}
 

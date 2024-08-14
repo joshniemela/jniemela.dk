@@ -67,10 +67,14 @@
 
 <style>
 	div {
-		width: 12em;
+		width: 22em;
 		height: 100%;
 		margin: 0 auto;
 
-    overflow: hidden;
+		overflow: hidden;
+		padding: 1em;
+		border: 2px solid var(--colour-orange);
+
+		background-color: black;
 	}
 </style>
