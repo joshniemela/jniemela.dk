@@ -19,7 +19,7 @@ enum Direction {
 	RIGHT = 'd'
 }
 
-type Board = {
+export type Board = {
 	board: number[][];
 	score: number;
 };
@@ -55,7 +55,7 @@ export class Hs2048Game {
 		this.#server.listen(0, () => {
 			console.log(`TCP server started on port ${(this.#server.address() as AddressInfo).port}`);
 		});
-		this.#process = spawn('./src/lib/hs2048', [
+		this.#process = spawn('./src/lib/hs2048-binary', [
 			'-p',
 			(this.#server.address() as AddressInfo).port.toString()
 		]);
