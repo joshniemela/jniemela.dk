@@ -55,7 +55,7 @@ export class Hs2048Game {
 		this.#server.listen(0, () => {
 			console.log(`TCP server started on port ${(this.#server.address() as AddressInfo).port}`);
 		});
-		this.#process = spawn('./src/routes/projects/hs2048/hs2048', [
+		this.#process = spawn('./src/lib/hs2048', [
 			'-p',
 			(this.#server.address() as AddressInfo).port.toString()
 		]);
