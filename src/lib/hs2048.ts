@@ -3,6 +3,9 @@ import type { ChildProcess } from 'node:child_process';
 import net from 'node:net';
 import { AddressInfo } from 'net';
 
+// This should be an env var
+const hs2048BinaryPath = process.env.HS2048_BINARY_PATH || 'src/lib/hs2048-binary';
+
 // Map of string to Process, one userid gets one game
 export const games: Map<string, Hs2048Game> = new Map();
 
@@ -40,8 +43,8 @@ export class Hs2048Game {
 					this.#serverState = ServerState.IDLE;
 				}
 			});
-			socket.on('close', () => {
-				console.log('Client disconnected');
+			socket.on('close', (reason) => {
+				console.log('Client disconnected', reason);
 			});
 			socket.on('error', (err) => {
 				console.error('Connection error:', err);
@@ -55,7 +58,7 @@ export class Hs2048Game {
 		this.#server.listen(0, () => {
 			console.log(`TCP server started on port ${(this.#server.address() as AddressInfo).port}`);
 		});
-		this.#process = spawn('./src/lib/hs2048-binary', [
+		this.#process = spawn(hs2048BinaryPath, [
 			'-p',
 			(this.#server.address() as AddressInfo).port.toString()
 		]);
