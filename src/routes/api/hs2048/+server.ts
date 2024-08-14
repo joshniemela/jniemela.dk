@@ -29,6 +29,9 @@ export async function POST({ request, cookies }) {
 	}
 	// get the direction from the request body
 	const { direction } = await request.json();
+	if (direction === null || direction === undefined) {
+		return json(game.getBoard());
+	}
 	if (!['w', 'a', 's', 'd', 'q'].includes(direction)) {
 		return json({ error: 'Invalid direction' }, { status: 400 });
 	}
