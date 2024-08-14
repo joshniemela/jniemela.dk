@@ -9,7 +9,7 @@ RUN apt-get update && \
 RUN npm install
 COPY . ./
 RUN npm run build
-RUN npm prune --omit=dev
+# RUN npm prune --omit=dev
 # Move src/lib/hs2048-binary to app
 COPY src/lib/hs2048-binary ./
 

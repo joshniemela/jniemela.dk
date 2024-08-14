@@ -70,5 +70,7 @@
 		width: 12em;
 		height: 100%;
 		margin: 0 auto;
+
+    overflow: hidden;
 	}
 </style>
