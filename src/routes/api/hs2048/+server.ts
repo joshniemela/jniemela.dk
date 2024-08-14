@@ -35,10 +35,8 @@ export async function POST({ request, cookies }) {
 	if (!['w', 'a', 's', 'd', 'q'].includes(direction)) {
 		return json({ error: 'Invalid direction' }, { status: 400 });
 	}
-	console.log('Moving in direction:', direction);
 	// move the game in the specified direction
 	await game.move(direction);
-	console.log('Game state:', game.getState());
 
 	return json(game.getBoard());
 }

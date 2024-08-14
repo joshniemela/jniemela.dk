@@ -98,14 +98,12 @@ export class Hs2048Game {
 			return;
 		}
 		// We can assert non-null since the server is running, this means a process was made.
-		console.log('Writing to stdin:', direction);
 		this.#process!.stdin!.write(direction);
-		this.#lastActivity = Date.now();
-		console.log('Moving in direction:', direction);
 		if (this.#currentState === 'gameover') {
 			this.#serverState = ServerState.STOPPED;
 			return;
 		} else {
+			this.#lastActivity = Date.now();
 			this.#serverState = ServerState.WAITING;
 		}
 

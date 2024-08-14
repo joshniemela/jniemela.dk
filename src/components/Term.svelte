@@ -64,3 +64,11 @@
 </script>
 
 <div bind:this={term}></div>
+
+<style>
+	div {
+		width: 12em;
+		height: 100%;
+		margin: 0 auto;
+	}
+</style>
