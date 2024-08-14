@@ -1,4 +1,5 @@
 <script lang="ts">
+	import type { Snippet } from 'svelte';
 	type Props = {
 		title: string;
 		description: string;
@@ -7,7 +8,14 @@
 		lastUpdated: string;
 	};
 
-	let { title, description, languagesUsed, github, lastUpdated }: Props = $props();
+	let {
+		title,
+		description,
+		languagesUsed,
+		github,
+		lastUpdated,
+		children
+	}: Props & { children: Snippet } = $props();
 </script>
 
 <svelte:head>
@@ -26,5 +34,5 @@
 	<p>
 		Language(s) used: {languagesUsed}
 	</p>
-	<slot />
+	{@render children()}
 </main>
