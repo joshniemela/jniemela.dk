@@ -109,25 +109,37 @@
 		<div class={photo_class}></div>
 	</div>
 	<p class="italic px-4">
-		I excel in communication with both technical and non-technical stakeholders to ensure that the
-		end product meets all requirements. I easily and quickly pick up new technologies and domain
-		knowledge for solving a wide variety of tasks. With my extensive knowledge in machine learning
-		and computer science, I provide valuable insights and solutions to complex problems and have a
-		more holistic view of the project than a typical project manager or developer.
+		I act as an effective link between technical and non-technical stakeholders to ensure that the
+		end product meets all requirements and that the project maximises organisational value. With my
+		extensive knowledge in machine learning and computer science, I provide valuable insights and
+		solutions to complex problems and have a more holistic view of the project than a typical
+		project manager or developer.
 	</p>
 
 	<Entry>
 		<h2 slot="title" class="text-xl">Experience</h2>
 		<Entry date={['2023']}>
 			<h3 slot="title">Consultant and developer</h3>
-
-			<Entry date={['09/2023', '06/2023']}>
-				<h3 slot="title">Pingo Documents & AI Estate</h3>
+			<Entry date={['09/2024']}>
+				<h3 slot="title">Pingo Documents</h3>
 				<ul class="list-square list-inside">
 					<li>
-						Lead developer of a 150k+ LOC codebase in C#, with a team of two developers, helping to
-						ensure best practices and maintainability, providing guidance and mentoring to junior
-						developers.
+						Responsible for a team of five consultants, ensuring that the client's wishes are
+						implemented and communicated in a swift and efficient manner.
+					</li>
+					<li>
+						Designed new architecture that can be incrementally implemented to fix fundamental
+						limitations in the existing codebase.
+					</li>
+				</ul>
+			</Entry>
+			<Entry date={['09/2023', '09/2024']}>
+				<h3 slot="title">AI Estate</h3>
+				<ul class="list-square list-inside">
+					<li>
+						Worked as a contractor for Pingo Documents (working with Pingo directly after 09/2024)
+						and was responsible for implementing and designing the heavier tasks, guiding and
+						assisting two other developers in smaller tasks.
 					</li>
 					<li>
 						Responsible for CI/CD, DevOps, security and ensuring the team met deadlines for client
@@ -143,6 +155,10 @@
 						backend for reliability and performance improvements.
 					</li>
 					<li>Made a service to perform information retrieval on real-estate documents.</li>
+					<li>
+						Performed an audit of website performance, found and fixed several problems and
+						inefficiencies reducing load time by 318%
+					</li>
 				</ul>
 			</Entry>
 			<Entry date={['06/2023', '07/2023']}>
@@ -188,10 +204,11 @@
 					combination of computer vision, clustering and morphological image processing in two
 					months.
 				</li>
+				<!--
 				<li>Wrote a comprehensive test suite to ensure the correctness of the program.</li>
+				-->
 			</ul>
 		</Entry>
-		<div class="page-break"></div>
 
 		<Entry date={['05/2023']}>
 			<h2 slot="title">KU Courses 2.0 - Project</h2>
@@ -227,6 +244,10 @@
 			Copenhagen University (DIKU)
 			<ul class="list-square list-inside">
 				<li>7-point scale average of 11.1.</li>
+				<li>
+					Writing a project on the effectiveness of topopological features in graph representation
+					learning
+				</li>
 			</ul>
 		</Entry>
 	</Entry>
@@ -234,9 +255,9 @@
 	<Entry>
 		<h2 slot="title" class="text-xl">Skills</h2>
 		<ul class="list-square list-inside">
-			<li>C#, Python, Rust, Typescript/Svelte, Julia, Clojure</li>
-			<li>SDLC, AGILE, project management, software architecture</li>
-			<li>Git, Github Actions, Docker-compose, GCP, Scalingo, DevOps</li>
+			<li>C#/.NET, TypeScript/Svelte, Python, Rust, Julia, Clojure</li>
+			<li>SDLC, AGILE, project management, software architecture, risk analysis</li>
+			<li>GitHub Actions, Docker Compose, VPS and cloud hosting</li>
 			<li>Machine learning, computer vision, deep learning, image processing, NLP, data science</li>
 		</ul>
 	</Entry>

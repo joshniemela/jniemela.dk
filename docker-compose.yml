@@ -6,5 +6,4 @@ services:
     restart: always
 
     ports:
-      - "4243:3000"
-
+      - '4243:3000'
