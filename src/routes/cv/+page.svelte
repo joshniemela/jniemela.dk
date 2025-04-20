@@ -62,7 +62,7 @@
 
 <aside class="flex justify-center">
 	<button
-		on:click={() => {
+		onclick={() => {
 			window.print();
 		}}
 	>
@@ -117,15 +117,41 @@
 	</p>
 
 	<Entry>
-		<h2 slot="title" class="text-xl">Experience</h2>
+		{#snippet title()}
+			<h2 class="text-xl">Experience</h2>
+		{/snippet}
 		<Entry date={['2023']}>
-			<h3 slot="title">Consultant and developer</h3>
-			<Entry date={['09/2024']}>
-				<h3 slot="title">Pingo Documents</h3>
+			{#snippet title()}
+				<h3>Consultant / Backend Developer</h3>
+			{/snippet}
+			<Entry date={['12/2024', '12/2024']}>
+				{#snippet title()}
+					<h3>Two Scenarios</h3>
+				{/snippet}
 				<ul class="list-square list-inside">
 					<li>
-						Responsible for a team of five consultants, ensuring that the client's wishes are
-						implemented and communicated in a swift and efficient manner.
+						Completed an urgent task by developing a concurrent program within a week to retrieve
+						and process pharmaceutical data from the Danish Medicines Agency (Lægemiddelstyrelsen)
+						thus ensuring the customer met their critical project deadlines.
+					</li>
+				</ul>
+			</Entry>
+			<Entry date={['09/2024']}>
+				{#snippet title()}
+					<h3>Pingo Documents</h3>
+				{/snippet}
+				<ul class="list-square list-inside">
+					<li>
+						Performed a performance audit of a problematic part of the website, and reduced the
+						number of database queries by 92% and decreased load times by more than 15x.
+					</li>
+					<li>
+						Implemented a vector-based search algorithm to retrieve names from the EU financial
+						sanctions list.
+					</li>
+					<li>
+						Responsible for coordinating a team of five consultants, ensuring that the client's
+						wishes are implemented and communicated.
 					</li>
 					<li>
 						Designed new architecture that can be incrementally implemented to fix fundamental
@@ -134,7 +160,9 @@
 				</ul>
 			</Entry>
 			<Entry date={['09/2023', '09/2024']}>
-				<h3 slot="title">AI Estate</h3>
+				{#snippet title()}
+					<h3>AI Estate</h3>
+				{/snippet}
 				<ul class="list-square list-inside">
 					<li>
 						Worked as a contractor for Pingo Documents (working with Pingo directly after 09/2024)
@@ -149,20 +177,17 @@
 						Implemented major updates to UX and features, by making the frontend more responsive and
 						giving it a more modern look as well as improving the previously unintuitive user flow.
 					</li>
-					<li>
-						Wrote API specifications and implemented REST endpoints in C# to interface with the
-						backend and other partner companies as well as migrating parts of the codebase to a Rust
-						backend for reliability and performance improvements.
-					</li>
 					<li>Made a service to perform information retrieval on real-estate documents.</li>
 					<li>
 						Performed an audit of website performance, found and fixed several problems and
-						inefficiencies reducing load time by 318%
+						inefficiencies reducing load time by 318%.
 					</li>
 				</ul>
 			</Entry>
 			<Entry date={['06/2023', '07/2023']}>
-				<h3 slot="title">AI Estate</h3>
+				{#snippet title()}
+					<h3>AI Estate</h3>
+				{/snippet}
 				<ul class="list-square list-inside">
 					<li>
 						Responsible for the setup of all IT infrastructure of an early stage startup (GCP,
@@ -170,7 +195,8 @@
 						team.
 					</li>
 					<li>
-						Provided consultation on the choice of technologies and architecture for the project.
+						Provided consultation on the choice of technologies and architecture for the initial
+						MVP.
 					</li>
 					<li>
 						Rapidly developed an MVP in Python using FastAPI and SQLite, in three weeks, to
@@ -181,7 +207,9 @@
 			</Entry>
 
 			<Entry date={['01/2023', '03/2023']}>
-				<h3 slot="title">Promilist</h3>
+				{#snippet title()}
+					<h3>Promilist</h3>
+				{/snippet}
 				<ul class="list-square list-inside">
 					<li>
 						Migrated a Python codebase to Julia, improving readability, maintainability and
@@ -197,7 +225,9 @@
 		</Entry>
 
 		<Entry date={['08/2022', '02/2023']}>
-			<h2 slot="title">Machine Learning Developer - Juristic ApS</h2>
+			{#snippet title()}
+				<h2>Machine Learning Developer - Juristic ApS</h2>
+			{/snippet}
 			<ul class="list-square list-inside">
 				<li>
 					Developed a program to automatically digitalise handwritten relational charts, using a
@@ -205,23 +235,22 @@
 					months.
 				</li>
 				<!--
-				<li>Wrote a comprehensive test suite to ensure the correctness of the program.</li>
-				-->
+                <li>Wrote a comprehensive test suite to ensure the correctness of the program.</li>
+                -->
 			</ul>
 		</Entry>
 
 		<Entry date={['05/2023']}>
-			<h2 slot="title">KU Courses 2.0 - Project</h2>
+			{#snippet title()}
+				<h2>KU Courses - Project</h2>
+			{/snippet}
 			<ul class="list-square list-inside">
 				<li>Lead developer of a open source project with multiple contributors.</li>
 				<li>
 					Used SEO and grassroots marketing to increase the monthly active users from 0 to 200.
 				</li>
 				<li>
-					Developed a <a
-						href="https://disku.jniemela.dk/"
-						class="text-purple-900 hover:text-purple-400"
-					>
+					Developed a <a href="https://kucourses.dk/" class="text-purple-900 hover:text-purple-400">
 						event-driven microservice based SPA
 					</a>
 					in Typescript, Clojure and Rust which asynchronously scrape pages, stores and displays course
@@ -238,22 +267,32 @@
 	</Entry>
 
 	<Entry>
-		<h2 slot="title" class="text-xl">Education</h2>
-		<Entry date={['2022']}>
-			<h3 slot="title">BSc in Machine Learning and Data Science</h3>
+		{#snippet title()}
+			<h2 class="text-xl">Education</h2>
+		{/snippet}
+		<Entry date={['08/2022', '06/2025']}>
+			{#snippet title()}
+				<h3>BSc in Machine Learning and Data Science</h3>
+			{/snippet}
 			Copenhagen University (DIKU)
 			<ul class="list-square list-inside">
-				<li>7-point scale average of 11.1.</li>
+				<li>7-point scale average of 11.0 / 12.0.</li>
 				<li>
-					Writing a project on the effectiveness of topopological features in graph representation
-					learning
+					Wrote my bachelor thesis on topological deep learning and graph representation learning,
+					which then evolved into a reproducibility study of state of the art graph machine learning
+					models. It can be found on GitHub, <a
+						href="https://github.com/joshniemela/BottlenecksWithinGNN"
+						class="text-purple-900 hover:text-purple-400">BottlenecksWithinGNNs</a
+					>.
 				</li>
 			</ul>
 		</Entry>
 	</Entry>
 
 	<Entry>
-		<h2 slot="title" class="text-xl">Skills</h2>
+		{#snippet title()}
+			<h2 class="text-xl">Skills</h2>
+		{/snippet}
 		<ul class="list-square list-inside">
 			<li>C#/.NET, TypeScript/Svelte, Python, Rust, Julia, Clojure</li>
 			<li>SDLC, AGILE, project management, software architecture, risk analysis</li>

@@ -1,10 +1,19 @@
 <script lang="ts">
-	export let link: string;
-	export let text: string;
-	export let icon: string | undefined = undefined;
 	// export a class for tailwindcss
-	let style: string | undefined = undefined;
-	export { style as class };
+	interface Props {
+		link: string;
+		text: string;
+		icon?: string | undefined;
+		class?: string | undefined;
+	}
+
+	let {
+		link,
+		text,
+		icon = undefined,
+		class: style = undefined
+	}: Props = $props();
+	
 </script>
 
 <a href={link} class="flex items-center space-x-1 text-purple-900 hover:text-purple-400">

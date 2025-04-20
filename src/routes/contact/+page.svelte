@@ -5,10 +5,13 @@
 <main class="page">
 	<h1>/contact</h1>
 	<p>
-		To get in touch with me, you can email me at <a
-			href="mailto&#58;jos%68&#64;%6A&#110;ie%6D&#101;la&#46;d&#107;"
+		I am always happy to discuss hobby projects, freelance work, or anything else that comes to
+		mind. Feel free to reach out!
+	</p>
+	<p>
+		You can email me at <a href="mailto&#58;jos%68&#64;%6A&#110;ie%6D&#101;la&#46;d&#107;"
 			>josh&#64;&#106;&#110;&#105;emela&#46;dk</a
-		> or find me at DIKU.
+		>.
 	</p>
 	<p>
 		For work inquiries, please contact me at <a
