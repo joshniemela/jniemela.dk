@@ -26,28 +26,28 @@ footer {
 
 /* Default screen size */
 main {
-    padding: 0 10vw;
+	padding: 0 10vw;
 }
 
 /* Medium screens */
 @media (max-width: 1024px) {
-    main {
-        padding: 0 8vw;
-    }
+	main {
+		padding: 0 8vw;
+	}
 }
 
 /* Small screens */
 @media (max-width: 768px) {
-    main {
-        padding: 0 5vw;
-    }
+	main {
+		padding: 0 5vw;
+	}
 }
 
 /* Extra small screens */
 @media (max-width: 480px) {
-    main {
-        padding: 0 2vw;
-    }
+	main {
+		padding: 0 2vw;
+	}
 }
 .page h1 {
 	font-size: 2rem;

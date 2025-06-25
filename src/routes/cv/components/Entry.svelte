@@ -16,11 +16,26 @@
 </script>
 
 <div class="pb-4 pt-2">
-	<div class="flex justify-between font-bold -mb-0.5">
-		{@render title()}
-		<p>{formatFromTo(date)}</p>
+	<div id="row" class="flex justify-between font-bold">
+		<div>
+			{@render title()}
+		</div>
+		<p id="date">{formatFromTo(date)}</p>
 	</div>
 	<div class="border-t-2 border-l-2 pl-3 border-purple-900">
 		{@render children?.()}
 	</div>
 </div>
+
+<style>
+	#row {
+		font-family: 'gemunu libre';
+		font-size: 1.1rem;
+	}
+
+	#date {
+		font-size: 0.8rem;
+		margin-top: auto;
+		margin-bottom: auto;
+	}
+</style>

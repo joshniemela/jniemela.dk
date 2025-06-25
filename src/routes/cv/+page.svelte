@@ -9,10 +9,6 @@
 <svelte:head>
 	<title>CV - {name}</title>
 	<style>
-		main {
-			font-family: 'Inter', sans-serif;
-		}
-
 		@media print {
 			main {
 				height: 100%;
@@ -74,7 +70,8 @@
 <main class="text-sm p-8 m-auto shadow-lg max-w-[210mm] h-[594mm]">
 	<!--Relatively position this at the left---------------------------------->
 	<div class="flex items-center justify-between mb-2">
-		<img src={photo_src} alt="Photo of {name}" class={photo_class} />
+		<img src={photo_src} alt="Photo of {name}" class={photo_class} style="display: none;" />
+		<div class={photo_class}></div>
 		<div>
 			<h1 class="text-3xl font-bold text-center">
 				{name}
@@ -82,7 +79,7 @@
 			<div class="flex flex-col items-center justify-between">
 				<!--Portfolio website----------------------------------------->
 				<p class="text-lg">
-					<Link link="https://jniemela.dk" text="jniemela.dk" class="font-semibold" />
+					<Link link="https://argmin.dk" text="argmin.dk" class="font-semibold" />
 				</p>
 				<!--2x2 grid-------------------------------------------------->
 				<div class="grid md:grid-cols-2 text-sm gap-2">
@@ -122,20 +119,8 @@
 		{/snippet}
 		<Entry date={['2023']}>
 			{#snippet title()}
-				<h3>Consultant / Backend Developer</h3>
+				<h3>Lead Developer - argmin Consulting</h3>
 			{/snippet}
-			<Entry date={['12/2024', '12/2024']}>
-				{#snippet title()}
-					<h3>Two Scenarios</h3>
-				{/snippet}
-				<ul class="list-square list-inside">
-					<li>
-						Completed an urgent task by developing a concurrent program within a week to retrieve
-						and process pharmaceutical data from the Danish Medicines Agency (Lægemiddelstyrelsen)
-						thus ensuring the customer met their critical project deadlines.
-					</li>
-				</ul>
-			</Entry>
 			<Entry date={['09/2024']}>
 				{#snippet title()}
 					<h3>Pingo Documents</h3>
@@ -143,19 +128,33 @@
 				<ul class="list-square list-inside">
 					<li>
 						Performed a performance audit of a problematic part of the website, and reduced the
-						number of database queries by 92% and decreased load times by more than 15x.
+						number of database queries by 92% and decreased page load times by more than 15x.
 					</li>
 					<li>
 						Implemented a vector-based search algorithm to retrieve names from the EU financial
 						sanctions list.
 					</li>
 					<li>
-						Responsible for coordinating a team of five consultants, ensuring that the client's
-						wishes are implemented and communicated.
+						Responsible for being a communication partner between the client and another team of
+						consultants, ensuring that the client's wishes are implemented and communicated.
 					</li>
 					<li>
 						Designed new architecture that can be incrementally implemented to fix fundamental
-						limitations in the existing codebase.
+						limitations in the existing codebase, making maintenance and future development easier.
+					</li>
+				</ul>
+			</Entry>
+
+			<Entry date={['12/2024', '12/2024']}>
+				{#snippet title()}
+					<h3>Two Scenarios</h3>
+				{/snippet}
+				<ul class="list-square list-inside">
+					<li>
+						Completed an urgent task by developing a concurrent service within a week to retrieve
+						and process pharmaceutical data for use in data analysis from the Danish Medicines
+						Agency (Lægemiddelstyrelsen) thus ensuring the customer met their critical project
+						deadlines.
 					</li>
 				</ul>
 			</Entry>
@@ -177,8 +176,11 @@
 						Implemented major updates to UX and features, by making the frontend more responsive and
 						giving it a more modern look as well as improving the previously unintuitive user flow.
 					</li>
-					<li>Made a service to perform information retrieval on real-estate documents.</li>
 					<li>
+						Made a service to perform information retrieval on real-estate documents with the use of
+						a language model.
+					</li>
+					<li style="display: none">
 						Performed an audit of website performance, found and fixed several problems and
 						inefficiencies reducing load time by 318%.
 					</li>
@@ -216,8 +218,9 @@
 						performance.
 					</li>
 					<li>
-						Developed code to calculate fuel-optimal paths for naval vessels, by graph-traversing
-						space-time graphs on a geodesic map outperforming the existing solution in Python by 5x.
+						Migrated code developed to calculate fuel-optimal paths for naval vessels, by
+						graph-traversing space-time graphs on a geodesic map to Julia, improving inference speed
+						by 5x.
 					</li>
 					<li>Implemented an API in Genie.jl to interface with the existing backend.</li>
 				</ul></Entry
@@ -234,9 +237,6 @@
 					combination of computer vision, clustering and morphological image processing in two
 					months.
 				</li>
-				<!--
-                <li>Wrote a comprehensive test suite to ensure the correctness of the program.</li>
-                -->
 			</ul>
 		</Entry>
 
@@ -270,13 +270,13 @@
 		{#snippet title()}
 			<h2 class="text-xl">Education</h2>
 		{/snippet}
-		<Entry date={['08/2022', '06/2025']}>
+		<Entry date={['08/2022', '19/06/2025']}>
 			{#snippet title()}
-				<h3>BSc in Machine Learning and Data Science</h3>
+				<h3>B.Sc in Machine Learning and Data Science</h3>
 			{/snippet}
 			Copenhagen University (DIKU)
 			<ul class="list-square list-inside">
-				<li>7-point scale average of 11.0 / 12.0.</li>
+				<li>7-point scale average of 10.9 / 12.0.</li>
 				<li>
 					Wrote my bachelor thesis on topological deep learning and graph representation learning,
 					which then evolved into a reproducibility study of state of the art graph machine learning
@@ -284,6 +284,11 @@
 						href="https://github.com/joshniemela/BottlenecksWithinGNN"
 						class="text-purple-900 hover:text-purple-400">BottlenecksWithinGNNs</a
 					>.
+				</li>
+
+				<li>
+					Took 30 ECTS of M.Sc courses in randomised and approximation algorithms, computational
+					geometry, probabilistic machine learning and IT project management.
 				</li>
 			</ul>
 		</Entry>
@@ -294,10 +299,22 @@
 			<h2 class="text-xl">Skills</h2>
 		{/snippet}
 		<ul class="list-square list-inside">
-			<li>C#/.NET, TypeScript/Svelte, Python, Rust, Julia, Clojure</li>
+			<li>C#/.NET, Svelte/TypeScript, Clojure/JVM, Python, Rust, Julia</li>
 			<li>SDLC, AGILE, project management, software architecture, risk analysis</li>
 			<li>GitHub Actions, Docker Compose, VPS and cloud hosting</li>
 			<li>Machine learning, computer vision, deep learning, image processing, NLP, data science</li>
 		</ul>
 	</Entry>
 </main>
+
+<style>
+	main {
+		font-family: 'montserrat';
+		font-size: 0.83rem;
+	}
+
+	h1 {
+		font-family: 'gemunu libre';
+		font-size: 2.5rem;
+	}
+</style>
