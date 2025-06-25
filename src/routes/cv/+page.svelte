@@ -106,11 +106,11 @@
 		<div class={photo_class}></div>
 	</div>
 	<p class="italic px-4">
-		I act as an effective link between technical and non-technical stakeholders to ensure that the
-		end product meets all requirements and that the project maximises organisational value. With my
-		extensive knowledge in machine learning and computer science, I provide valuable insights and
-		solutions to complex problems and have a more holistic view of the project than a typical
-		project manager or developer.
+		I bridge the gap between technical and non-technical stakeholders to deliver projects that more
+		effectively incorporate business domain knowledge while minimising technical debt. I tackle a
+		wide range of problems, such as performance optimisation, data modelling, and software
+		architecture design. I also have extensive experience working with containerised environments
+		and Linux.
 	</p>
 
 	<Entry>
@@ -128,19 +128,15 @@
 				<ul class="list-square list-inside">
 					<li>
 						Performed a performance audit of a problematic part of the website, and reduced the
-						number of database queries by 92% and decreased page load times by more than 15x.
+						number of database queries in MS SQL by 92% and decreased load times by more than 15x.
 					</li>
 					<li>
-						Implemented a vector-based search algorithm to retrieve names from the EU financial
-						sanctions list.
+						Implemented integrations to eTl (Danish land registry), CVR (Danish Central Business
+						Register) to automatically fetch and display information needed by users.
 					</li>
 					<li>
-						Responsible for being a communication partner between the client and another team of
-						consultants, ensuring that the client's wishes are implemented and communicated.
-					</li>
-					<li>
-						Designed new architecture that can be incrementally implemented to fix fundamental
-						limitations in the existing codebase, making maintenance and future development easier.
+						Designed and implemented a major refactor to fix fundamental limitations in the existing
+						codebase, making high-impact features possible to implement.
 					</li>
 				</ul>
 			</Entry>
@@ -151,21 +147,23 @@
 				{/snippet}
 				<ul class="list-square list-inside">
 					<li>
-						Completed an urgent task by developing a concurrent service within a week to retrieve
-						and process pharmaceutical data for use in data analysis from the Danish Medicines
-						Agency (Lægemiddelstyrelsen) thus ensuring the customer met their critical project
-						deadlines.
+						Built an integration for Two Scenarios to continuously transfer pharmaceutical pricing
+						data into a database within a week, enabling them to meet a crucial deadline.
+						<a
+							href="https://argmin.dk/cases/two-scenarios"
+							class="text-purple-900 hover:text-purple-400">See case study</a
+						>
 					</li>
 				</ul>
 			</Entry>
-			<Entry date={['09/2023', '09/2024']}>
+			<Entry date={['06/2023', '09/2024']}>
 				{#snippet title()}
 					<h3>AI Estate</h3>
 				{/snippet}
 				<ul class="list-square list-inside">
 					<li>
 						Worked as a contractor for Pingo Documents (working with Pingo directly after 09/2024)
-						and was responsible for implementing and designing the heavier tasks, guiding and
+						and was responsible for completing the more complex tasks, as well as guiding and
 						assisting two other developers in smaller tasks.
 					</li>
 					<li>
@@ -177,33 +175,8 @@
 						giving it a more modern look as well as improving the previously unintuitive user flow.
 					</li>
 					<li>
-						Made a service to perform information retrieval on real-estate documents with the use of
-						a language model.
-					</li>
-					<li style="display: none">
-						Performed an audit of website performance, found and fixed several problems and
-						inefficiencies reducing load time by 318%.
-					</li>
-				</ul>
-			</Entry>
-			<Entry date={['06/2023', '07/2023']}>
-				{#snippet title()}
-					<h3>AI Estate</h3>
-				{/snippet}
-				<ul class="list-square list-inside">
-					<li>
-						Responsible for the setup of all IT infrastructure of an early stage startup (GCP,
-						GitHub and CI/CD), and ensured that good programming practices were followed by the
-						team.
-					</li>
-					<li>
-						Provided consultation on the choice of technologies and architecture for the initial
-						MVP.
-					</li>
-					<li>
-						Rapidly developed an MVP in Python using FastAPI and SQLite, in three weeks, to
-						interface with LLMs and other services as well as harvest relevant information from
-						Tinglysning.dk.
+						Made a service to perform information retrieval on real-estate documents using OCR and a
+						language model.
 					</li>
 				</ul>
 			</Entry>
@@ -214,13 +187,9 @@
 				{/snippet}
 				<ul class="list-square list-inside">
 					<li>
-						Migrated a Python codebase to Julia, improving readability, maintainability and
-						performance.
-					</li>
-					<li>
-						Migrated code developed to calculate fuel-optimal paths for naval vessels, by
-						graph-traversing space-time graphs on a geodesic map to Julia, improving inference speed
-						by 5x.
+						Migrated a Python codebase to Julia, improving inference speed by 5x. This was used to
+						calculate fuel-optimal paths for naval vessels, by graph-traversing space-time graphs on
+						a geodesic map.
 					</li>
 					<li>Implemented an API in Genie.jl to interface with the existing backend.</li>
 				</ul></Entry
@@ -240,15 +209,12 @@
 			</ul>
 		</Entry>
 
+		<div class="page-break"></div>
 		<Entry date={['05/2023']}>
 			{#snippet title()}
 				<h2>KU Courses - Project</h2>
 			{/snippet}
 			<ul class="list-square list-inside">
-				<li>Lead developer of a open source project with multiple contributors.</li>
-				<li>
-					Used SEO and grassroots marketing to increase the monthly active users from 0 to 200.
-				</li>
 				<li>
 					Developed a <a href="https://kucourses.dk/" class="text-purple-900 hover:text-purple-400">
 						event-driven microservice based SPA
@@ -257,10 +223,14 @@
 					information from KU's course catalogue with significant performance (3x-15x shorter latency)
 					and UX improvements over the existing official solution.
 				</li>
+				<li>PostgreSQL was used to store vector embeddings and course information.</li>
 				<li>
 					ONNX was used to perform vector-based search of courses with a pre-trained sentence
 					transformer model. This approach yielded more robust and relevant search results compared
 					to the existing solution.
+				</li>
+				<li>
+					Used SEO and grassroots marketing to increase the monthly active users from 0 to 200.
 				</li>
 			</ul>
 		</Entry>
@@ -278,17 +248,17 @@
 			<ul class="list-square list-inside">
 				<li>7-point scale average of 10.9 / 12.0.</li>
 				<li>
+					Took 30 ECTS of M.Sc courses in randomised and approximation algorithms, computational
+					geometry, probabilistic machine learning and IT project management.
+				</li>
+
+				<li>
 					Wrote my bachelor thesis on topological deep learning and graph representation learning,
 					which then evolved into a reproducibility study of state of the art graph machine learning
 					models. It can be found on GitHub, <a
 						href="https://github.com/joshniemela/BottlenecksWithinGNN"
 						class="text-purple-900 hover:text-purple-400">BottlenecksWithinGNNs</a
 					>.
-				</li>
-
-				<li>
-					Took 30 ECTS of M.Sc courses in randomised and approximation algorithms, computational
-					geometry, probabilistic machine learning and IT project management.
 				</li>
 			</ul>
 		</Entry>
@@ -298,11 +268,13 @@
 		{#snippet title()}
 			<h2 class="text-xl">Skills</h2>
 		{/snippet}
-		<ul class="list-square list-inside">
-			<li>C#/.NET, Svelte/TypeScript, Clojure/JVM, Python, Rust, Julia</li>
-			<li>SDLC, AGILE, project management, software architecture, risk analysis</li>
-			<li>GitHub Actions, Docker Compose, VPS and cloud hosting</li>
-			<li>Machine learning, computer vision, deep learning, image processing, NLP, data science</li>
+
+		<ul class="list-inside">
+			<li><b>Languages:</b> C# (.NET), Svelte/TypeScript, Clojure (JVM), Python, Rust, Julia</li>
+			<li>
+				<b>DevOps and Tools:</b>
+				Docker, TeamCity, GitHub Actions, VPS and cloud hosting (Hetzner, GCP)
+			</li>
 		</ul>
 	</Entry>
 </main>
@@ -316,5 +288,10 @@
 	h1 {
 		font-family: 'gemunu libre';
 		font-size: 2.5rem;
+	}
+
+	b {
+		font-family: 'gemunu libre';
+		font-size: 0.9rem;
 	}
 </style>
